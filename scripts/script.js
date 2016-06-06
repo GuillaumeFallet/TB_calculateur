@@ -1,6 +1,8 @@
 /**
  * Created by Pydd on 06.06.2016.
  */
+
+
 $(function () {
     $('#container').highcharts({
         chart: {

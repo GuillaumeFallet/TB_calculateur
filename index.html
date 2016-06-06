@@ -3,12 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculateur </title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/myStyle.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script type="text/javascript" src="scripts/script.js"></script>
 </head>
 <body>
+
+<div class="container-fluid"  >
+    <a href="#id_nuclear_table" class="btn btn-info" data-toggle="collapse"> [+/-] Fermeture des centrales nucléaires </a>
+    <table id="id_nuclear_table" class="table table-hover collapse" >
+        <thead>
+        <tr>
+            <th>Centrale nucléaire</th>
+            <th>Année de construction</th>
+            <th>Puissance max. (MW)</th>
+            <th>Durée de vie</th>
+            <th>Date d'arrêt</th>
+            <th>%</th>
+            <th>Production (TWh)</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Beznau 1</td>
+            <td>1969</td>
+            <td>365</td>
+            <td><input size="1" type="text" id="lifetime_Beznau1" value="50"> années</td>
+            <td><input size="1" type="text" id="stopdate_Beznau1" value="2019"></td>
+            <td>11%</td>
+            <td>2.893</td>
+        </tr>
+        <tr>
+            <td>Beznau 2</td>
+            <td>1971</td>
+            <td>365</td>
+            <td><input size="1" type="text" id="lifetime_Beznau2" value="50"> années</td>
+            <td><input size="1" type="text" id="stopdate_Beznau2" value="2021"></td>
+            <td>11%</td>
+            <td>2.893</td>
+        </tr>
+        <tr>
+            <td>Gösgen</td>
+            <td>1979</td>
+            <td>1010</td>
+            <td><input size="1" type="text" id="lifetime_Gösgen" value="50"> années</td>
+            <td><input size="1" type="text" id="stopdate_Gösgen" value="2029"></td>
+            <td>30%</td>
+            <td>7.89</td>
+        </tr>
+        <tr>
+            <td>Leibstadt</td>
+            <td>1984</td>
+            <td>1220</td>
+            <td><input size="1" type="text" id="lifetime_Leibstadt" value="50"> années</td>
+            <td><input size="1" type="text" id="stopdate_Leibstadt" value="2034"></td>
+            <td>37%</td>
+            <td>9.731</td>
+        </tr>
+        <tr>
+            <td>Mühleberg</td>
+            <td>1972</td>
+            <td>373</td>
+            <td><input size="1" type="text" id="lifetime_Mühleberg" value="47"> années</td>
+            <td><input size="1" type="text" id="stopdate_Mühleberg" value="2019"></td>
+            <td>11%</td>
+            <td>2.893</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="#id_new_centrales_table" class="btn btn-info" data-toggle="collapse"> [+/-] Construction de nouvelles grandes centrales </a>
+    <table id="id_new_centrales_table" class="table table-hover collapse" >
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Date de mise en service</th>
+            <th>Puissance (MW)</th>
+            <th>Production estimée (TWh)</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Centrale à gaz</td>
+            <td>2020</td>
+            <td>400</td>
+            <td>2.893</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="#id_prod_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la production </a>
+    <table id="id_prod_evolution_table" class="table table-hover collapse" >
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Progression (% par année)</th>
+            <th>Objectif 2050</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Hydraulique (accumulation)</td>
+            <td><input size="1" type="text" id="evolution_hydroacc" value="1.5"> %</td>
+            <td>+ <input size="1" type="text" id="evolution_hydroacc_goal" value="2"> TWh</td>
+        </tr>
+        <tr>
+            <td>Hydraulique au fil de l'eau</td>
+            <td><input size="1" type="text" id="evolution_hydrofil" value="0.5"> %</td>
+            <td>+ <input size="1" type="text" id="evolution_hydrofil_goal" value="1"> TWh</td>
+        </tr>
+        <tr>
+            <td>Solaire</td>
+            <td><input size="1" type="text" id="evolution_solar" value="7"> %</td>
+            <td>+ <input size="1" type="text" id="evolution_solar_goal" value="12"> TWh</td>
+        </tr>
+        <tr>
+            <td>Eolien</td>
+            <td><input size="1" type="text" id="evolution_eolien" value="5"> %</td>
+            <td>+ <input size="1" type="text" id="evolution_eolien_goal" value="3"> TWh</td>
+        </tr>
+        <tr>
+            <td>Géothermie</td>
+            <td><input size="1" type="text" id="evolution_geothe" value="1"> %</td>
+            <td>+ <input size="1" type="text" id="evolution_geoth_goal" value="0.5"> TWh</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="#id_conso_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la consommation  </a>
+    <table id="id_conso_evolution_table" class="table table-hover collapse" >
+        <tbody>
+        <tr>
+            <td>Taux de progression de la consommation</td>
+            <td><input size="1" type="text" id="evolution_conso" value="1.5"> %</td>
+            <td><input size="1" type="text" id="evolution_conso_goal" value="-8"> TWh</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="#id_price_table" class="btn btn-info" data-toggle="collapse"> [+/-] Prix MWh </a>
+    <table id="id_price_table" class="table table-hover collapse" >
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Prix</th>
+            <th>Progression</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Nucléaire</td>
+            <td><input size="1" type="text" id="price_nuclear" value="5"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_nuclear_evolution" value="2"> %</td>
+        </tr>
+        <tr>
+            <td>Centrale à gaz</td>
+            <td><input size="1" type="text" id="price_gaz" value="6"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_gaz_evolution" value="1.5"> %</td>
+        </tr>
+        <tr>
+            <td>Hydroélectricité</td>
+            <td><input size="1" type="text" id="price_hydro" value="6"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_hydro_evolution" value="0"> %</td>
+        </tr>
+        <tr>
+            <td>Eolien</td>
+            <td><input size="1" type="text" id="price_eolien" value="7.5"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_eolien_evolution" value="-2"> %</td>
+        </tr>
+        <tr>
+            <td>Solaire</td>
+            <td><input size="1" type="text" id="price_solar" value="9"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_solar_evolution" value="-5"> %</td>
+        </tr>
+        <tr>
+            <td>Géothermie</td>
+            <td><input size="1" type="text" id="price_geotherm" value="0"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_geotherm_evolution" value="0"> %</td>
+        </tr>
+        <tr>
+            <td>Importations</td>
+            <td><input size="1" type="text" id="price_import" value="7"> ct./kWh</td>
+            <td>+ <input size="1" type="text" id="price_import_evolution" value="-5"> %</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>
