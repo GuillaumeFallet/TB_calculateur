@@ -3,6 +3,31 @@
  */
 
 
+
+$(function (){
+  $.each(centrales,function(key,value)
+    {
+        var row = '<tr>' +
+            '<td>'+value.name+'</td>' +
+            '<td>'+value.constructYear+'</td>' +
+            '<td>'+value.maxPower+'</td>' +
+            '<td><form><input id="id_lifetime_'+key+'" size="1" type="number" min="0" max="100" value="'+value.lifetime+'"> années </form></td>' +
+            '<td><form><input id="id_stopdate_'+key+'" size="1" type="number" min="2016" max="2100" value="'+value.stopdate+'"></form></td>' +
+            '<td>'+value.percent+'</td>' +
+            '<td>'+value.production+'</td>' +
+            '</tr>' ;
+        $('#id_nuclear_table').append(row);
+        console.log(row);
+    }) ;
+
+    $('input').change(function(event){
+        var obj = jQuery(this).attr("id");
+        console.log(obj);
+    });
+}) ;
+
+
+
 $(function () {
     $('#container').highcharts({
         chart: {

@@ -11,7 +11,10 @@
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/centrales_nucl.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
+
 </head>
 <body>
 
@@ -19,7 +22,7 @@
     <a href="#id_nuclear_table" class="btn btn-info" data-toggle="collapse"> [+/-] Fermeture des centrales nucléaires </a>
     <table id="id_nuclear_table" class="table table-hover collapse" >
         <thead>
-        <tr>
+        <tr id="rowNucl">
             <th>Centrale nucléaire</th>
             <th>Année de construction</th>
             <th>Puissance max. (MW)</th>
@@ -30,53 +33,6 @@
 
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>Beznau 1</td>
-            <td>1969</td>
-            <td>365</td>
-            <td><input size="1" type="text" id="lifetime_Beznau1" value="50"> années</td>
-            <td><input size="1" type="text" id="stopdate_Beznau1" value="2019"></td>
-            <td>11%</td>
-            <td>2.893</td>
-        </tr>
-        <tr>
-            <td>Beznau 2</td>
-            <td>1971</td>
-            <td>365</td>
-            <td><input size="1" type="text" id="lifetime_Beznau2" value="50"> années</td>
-            <td><input size="1" type="text" id="stopdate_Beznau2" value="2021"></td>
-            <td>11%</td>
-            <td>2.893</td>
-        </tr>
-        <tr>
-            <td>Gösgen</td>
-            <td>1979</td>
-            <td>1010</td>
-            <td><input size="1" type="text" id="lifetime_Gösgen" value="50"> années</td>
-            <td><input size="1" type="text" id="stopdate_Gösgen" value="2029"></td>
-            <td>30%</td>
-            <td>7.89</td>
-        </tr>
-        <tr>
-            <td>Leibstadt</td>
-            <td>1984</td>
-            <td>1220</td>
-            <td><input size="1" type="text" id="lifetime_Leibstadt" value="50"> années</td>
-            <td><input size="1" type="text" id="stopdate_Leibstadt" value="2034"></td>
-            <td>37%</td>
-            <td>9.731</td>
-        </tr>
-        <tr>
-            <td>Mühleberg</td>
-            <td>1972</td>
-            <td>373</td>
-            <td><input size="1" type="text" id="lifetime_Mühleberg" value="47"> années</td>
-            <td><input size="1" type="text" id="stopdate_Mühleberg" value="2019"></td>
-            <td>11%</td>
-            <td>2.893</td>
-        </tr>
-        </tbody>
     </table>
     <br>
     <a href="#id_new_centrales_table" class="btn btn-info" data-toggle="collapse"> [+/-] Construction de nouvelles grandes centrales </a>
