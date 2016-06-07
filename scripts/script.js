@@ -9,20 +9,27 @@ $(function (){
     {
         var row = '<tr>' +
             '<td>'+value.name+'</td>' +
-            '<td>'+value.constructYear+'</td>' +
+            '<td id="constructYear_'+key+'">'+value.constructYear+'</td>' +
             '<td>'+value.maxPower+'</td>' +
-            '<td><form><input id="id_lifetime_'+key+'" size="1" type="number" min="0" max="100" value="'+value.lifetime+'"> années </form></td>' +
-            '<td><form><input id="id_stopdate_'+key+'" size="1" type="number" min="2016" max="2100" value="'+value.stopdate+'"></form></td>' +
+            '<td><form><input class="input_lifetime" id="lifetime_'+key+'" size="1" type="number" min="0" max="100" value="'+value.lifetime+'"> années </form></td>' +
+            '<td><form><input class="input_stopdate" id="stopdate_'+key+'" size="1" type="number" min="2016" max="2100" value="'+value.stopdate+'"></form></td>' +
             '<td>'+value.percent+'</td>' +
             '<td>'+value.production+'</td>' +
             '</tr>' ;
         $('#id_nuclear_table').append(row);
-        console.log(row);
     }) ;
 
-    $('input').change(function(event){
-        var obj = jQuery(this).attr("id");
-        console.log(obj);
+    $('.input_lifetime').change(function(event){
+        var id = jQuery(this).attr("id");
+        var splitid = id.split("_") ;
+       $('#stopdate_'+splitid[1]).attr("value",parseFloat($('#constructYear_'+splitid[1]).text()) + parseFloat($('#lifetime_'+splitid[1]).val())) ;
+    });
+
+    $('.input_stopdate').change(function(event){
+        var id = jQuery(this).attr("id");
+        var splitid = id.split("_") ;
+        $('#lifetime_'+splitid[1]).attr("value",parseFloat($('#stopdate_'+splitid[1]).val()) - parseFloat($('#constructYear_'+splitid[1]).text())) ;
+
     });
 }) ;
 
