@@ -34,13 +34,13 @@ $(function () {
             type: 'area'
         },
         title: {
-            text: 'Historic and Estimated Worldwide Population Growth by Region'
+            text: 'Évolution de la production et de la consommation d\x27électricité'
         },
         subtitle: {
-            text: 'Source: Wikipedia.org'
+            text: 'Source: Statistique suisse de l\x27électricité 2014'
         },
         xAxis: {
-            categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+            categories: years,
             tickmarkPlacement: 'on',
             title: {
                 enabled: false
@@ -48,7 +48,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Billions'
+                text: 'GWh'
             },
             labels: {
                 formatter: function () {
@@ -57,8 +57,7 @@ $(function () {
             }
         },
         tooltip: {
-            shared: true,
-            valueSuffix: ' millions'
+            shared: true
         },
         plotOptions: {
             area: {
@@ -72,20 +71,18 @@ $(function () {
             }
         },
         series: [{
-            name: 'Asia',
-            data: [502, 635, 809, 947, 1402, 3634, 5268]
+            name: 'Hydraulique',
+            data: prod_hydro
         }, {
-            name: 'Africa',
-            data: [106, 107, 111, 133, 221, 767, 1766]
+            name: 'Nucléaire',
+            color : '#D7DF01',
+            data: prod_nucl
         }, {
-            name: 'Europe',
-            data: [163, 203, 276, 408, 547, 729, 628]
-        }, {
-            name: 'America',
-            data: [18, 31, 54, 156, 339, 818, 1201]
-        }, {
-            name: 'Oceania',
-            data: [2, 2, 2, 6, 13, 30, 46]
-        }]
+            name: 'Thermique',
+            data: prod_therm
+        },/* {
+            name: 'Consommation',
+            data: conso
+        }*/]
     });
 });
