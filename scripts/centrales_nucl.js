@@ -1,4 +1,4 @@
-var centrales = {
+﻿var centrales = {
 	Beznau1: {name: "Beznau 1", constructYear: 1969, maxPower: 365, lifetime: 50, stopdate: 2019, percent: 11, production: 2893 },
 	Beznau2: {name: "Beznau 2", constructYear: 1971, maxPower: 365, lifetime: 50, stopdate: 2021, percent: 11, production: 2893 },
 	Gosgen: {name: "Gösgen", constructYear: 1979, maxPower: 1010, lifetime: 50, stopdate: 2029, percent: 30, production: 7890 },

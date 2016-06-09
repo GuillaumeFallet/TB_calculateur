@@ -146,7 +146,7 @@ $(function () {
         },
         series: [{
             marker: {
-                symbol: 'circle'
+                enabled: false
             },
             name: 'Hydraulique',
             data: prod_hydro_past.concat(prod_hydro_futur),
@@ -154,14 +154,14 @@ $(function () {
             stacking: 'normal'
         },{
             marker: {
-                symbol: 'circle'
+                enabled: false
             },
             name: 'Thermique',
             data: prod_therm_past.concat(prod_therm_futur),
             stacking: 'normal'
         }, {
             marker: {
-                symbol: 'circle'
+                enabled: false
             },
             name: 'Nucléaire',
             color : '#D7DF01',
@@ -169,7 +169,7 @@ $(function () {
             stacking: 'normal'
         }, {
             marker: {
-                symbol: 'circle'
+                enabled: false
             },
             name: 'Consommation',
             data: conso_past.concat(conso_futur),
@@ -227,7 +227,10 @@ $(function () {
         },
         series: [{
             name: 'Différence entre consommation et production',
-            data: array_diff_past.concat(array_diff_futur)
+            data: array_diff_past.concat(array_diff_futur),
+            marker: {
+                enabled: false
+            }
         }]
     });
 });
