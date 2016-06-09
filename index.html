@@ -13,7 +13,8 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/centrales_nucl.js"></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="scripts/scriptConso.js"></script>
+    <script type="text/javascript" src="scripts/scriptNucl.js"></script>
 
 </head>
 <body>
@@ -99,8 +100,8 @@
         <tbody>
         <tr>
             <td>Taux de progression de la consommation</td>
-            <td><input size="1" type="text" id="evolution_conso" value="1.5"> %</td>
-            <td><input size="1" type="text" id="evolution_conso_goal" value="-8"> TWh</td>
+            <td><input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_conso_goal" value="-8"> TWh</td>
         </tr>
         </tbody>
     </table>
