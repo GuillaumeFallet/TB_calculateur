@@ -4,13 +4,13 @@
 
 var currentTime = new Date();
 var year = currentTime.getFullYear() ;
-var nucl_chart  ;
+var prod_chart  ;
 var consoprod_chart ;
-var array_diff_past = [] ;
+var globalArray  ;
 
 $(function (){
 
-  $.each(centrales,function(key,value)
+    $.each(centrales,function(key,value)
     {
         var row = '<tr>' +
             '<td>'+value.name+'</td>' +
@@ -60,44 +60,70 @@ $(function (){
 
         $(this).prop("value",newValue) ;
         $('#lifetime_'+splitid[1]).prop("value",parseFloat(newValue - parseFloat($('#constructYear_'+splitid[1]).text()))) ;
+
         calculateNuclProd() ;
 
     });
+
+
+    globalArray = new Array() ;
+    globalArray['years'] = years ;
+    globalArray['prod_nucl'] = prod_nucl ;
+    globalArray['prod_hydro_acc'] =  prod_hydro_acc ;
+    globalArray['prod_hydro_fil'] = prod_hydro_fil ;
+    globalArray['prod_solar'] = prod_solar ;
+    globalArray['prod_eol'] = prod_eol ;
+    globalArray['prod_therm_centr'] = prod_therm_centr ;
+    globalArray['conso'] = conso ;
+
+    Drawcharts() ;
+    calculateNuclProd() ;
+    changeFuturConsoChart(0) ;
 }) ;
 
 function calculateNuclProd()
 {
-    var new_nucl_prod = Array.apply(null, Array(18)).map(Number.prototype.valueOf,0);
+    for(var i = year-1 ; i <= 2050 ; i ++)
+    {
+        globalArray['prod_nucl'][globalArray['years'].indexOf(i)] = 0 ;
+    }
 
     $('#id_nuclear_table > tbody').find('tr').each(function (i, el) {
         var $tds = $(this).find('td') ;
 
-        for(var i = 0 ; i < 18 ; i ++)
+        for(var i = year-1 ; i <= 2050 ; i ++)
         {
-            if (i+year+1 < $tds.eq(4).find("input").val())
+            if (i < $tds.eq(4).find("input").val())
             {
-              new_nucl_prod[i] += parseInt($tds.eq(6).text()) ;
-          //    console.log("année "+(i+year)+". La centrale de "+$tds.eq(0).text()+" produit encore") ;
+                globalArray['prod_nucl'][globalArray['years'].indexOf(i)] += parseInt($tds.eq(6).text()) ;
             }
-
         }
 
     });
-    var array_diff_futur = [];
-
-
-    for (var i = 0 ; i < conso_futur.length ; i ++)
-    {
-        // console.log((prod_hydro_past[i]+prod_nucl_past[i]+prod_therm_past[i])-conso_past[i]) ;
-        array_diff_futur.push(prod_hydro_futur[i]+new_nucl_prod[i]+prod_therm_futur[i]-conso_futur[i])
-    }
-
-    nucl_chart.series[2].setData(prod_nucl_past.concat(new_nucl_prod),true) ;
-    consoprod_chart.series[0].setData(array_diff_past.concat((array_diff_futur)),true) ;
+    prod_chart.series[4].update(globalArray['prod_nucl'],true) ;
+    updateConsProdChart() ;
 }
 
-$(function () {
-        nucl_chart  = new Highcharts.Chart({
+function updateConsProdChart()
+{
+    var array_diff = [];
+    for (var i = 0 ; i < globalArray['years'].length ; i ++)
+    {
+        array_diff[i] = (
+        (globalArray['prod_nucl'][i]+
+        globalArray['prod_hydro_acc'][i]+
+        globalArray['prod_hydro_fil'][i]+
+        globalArray['prod_solar'][i]+
+        globalArray['prod_eol'][i]+
+        globalArray['prod_therm_centr'][i])-
+        globalArray['conso'][i]) ;
+    }
+
+    consoprod_chart.series[0].setData(array_diff,true) ;
+}
+
+function Drawcharts() {
+    prod_chart  = new Highcharts.Chart({
         chart: {
             renderTo : container_nucl_chart,
             type: 'area'
@@ -124,11 +150,6 @@ $(function () {
         yAxis: {
             title: {
                 text: 'GWh'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value / 1000;
-                }
             }
         },
         tooltip: {
@@ -144,54 +165,61 @@ $(function () {
                 }
             }
         },
-        series: [{
-            marker: {
-                enabled: false
-            },
-            name: 'Hydraulique',
-            data: prod_hydro_past.concat(prod_hydro_futur),
-            symbol: 'circle',
-            stacking: 'normal'
-        },{
-            marker: {
-                enabled: false
-            },
-            name: 'Thermique',
-            data: prod_therm_past.concat(prod_therm_futur),
-            stacking: 'normal'
-        }, {
-            marker: {
-                enabled: false
-            },
-            name: 'Nucléaire',
-            color : '#D7DF01',
-            data: prod_nucl_past.concat(prod_nucl_futur),
-            stacking: 'normal'
-        }, {
-            marker: {
-                enabled: false
-            },
-            name: 'Consommation',
-            data: conso_past.concat(conso_futur),
-            color: '#DF0101',
-            type: 'line'
+        series: [
+            {
+                marker: {
+                    enabled: false
+                },
+                name: 'Solaire',
+                data: globalArray['prod_solar'],
+                symbol: 'circle',
+                color: '#ff9933',
+                stacking: 'normal'
+            },{
+                marker: {
+                    enabled: false
+                },
+                name: 'Eolien',
+                data: globalArray['prod_eol'],
+                symbol: 'circle',
+                color: '#00ff00',
+                stacking: 'normal'
+            }, {
+                marker: {
+                    enabled: false
+                },
+                name: 'Hydraulique',
+                data: globalArray['prod_hydro_acc'],
+                symbol: 'circle',
+                color: '#0033cc',
+                stacking: 'normal'
+            },{
+                marker: {
+                    enabled: false
+                },
+                name: 'Thermique',
+                data: globalArray['prod_therm_centr'],
+                stacking: 'normal'
+            }, {
+                marker: {
+                    enabled: false
+                },
+                name: 'Nucléaire',
+                color : '#D7DF01',
+                data: globalArray['prod_nucl'],
+                stacking: 'normal'
+            }, {
+                marker: {
+                    enabled: false
+                },
+                name: 'Consommation',
+                data: globalArray['conso'],
+                color: '#DF0101',
+                type: 'line'
 
-        }]
+            }]
 
     });
-
-
-    var array_diff_futur = [];
-    for (var i = 0 ; i < conso_past.length ; i ++)
-    {
-       // console.log((prod_hydro_past[i]+prod_nucl_past[i]+prod_therm_past[i])-conso_past[i]) ;
-        array_diff_past.push(prod_hydro_past[i]+prod_nucl_past[i]+prod_therm_past[i]-conso_past[i])
-    }
-    for (var i = 0 ; i < conso_futur.length ; i ++)
-    {
-        // console.log((prod_hydro_past[i]+prod_nucl_past[i]+prod_therm_past[i])-conso_past[i]) ;
-        array_diff_futur.push(prod_hydro_futur[i]+prod_nucl_futur[i]+prod_therm_futur[i]-conso_futur[i])
-    }
 
     consoprod_chart  = new Highcharts.Chart({
         chart: {
@@ -227,10 +255,10 @@ $(function () {
         },
         series: [{
             name: 'Différence entre consommation et production',
-            data: array_diff_past.concat(array_diff_futur),
+            data: [] ,
             marker: {
                 enabled: false
             }
         }]
     });
-});
+}

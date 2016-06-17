@@ -6,13 +6,11 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/myStyle.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script type="text/javascript" src="scripts/data.js"></script>
-    <script type="text/javascript" src="scripts/centrales_nucl.js"></script>
+    <script src="scripts/third-party/jquery.min.js"></script>
+    <script src="scripts/third-party/bootstrap.min.js"></script>
+    <script src="scripts/third-party/highcharts.js"></script>
+    <script type="text/javascript" src="documents/data.js"></script>
+    <script type="text/javascript" src="documents/centrales_nucl.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
     <script type="text/javascript" src="scripts/scriptNucl.js"></script>
 
@@ -47,11 +45,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Centrale à gaz</td>
-            <td>2020</td>
-            <td>400</td>
-            <td>2.893</td>
+        <tr class="hiddenRow">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
@@ -100,8 +98,8 @@
         <tbody>
         <tr>
             <td>Taux de progression de la consommation</td>
-            <td><input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_conso_goal" value="-8"> TWh</td>
+            <td>+<input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
+            <td>+<input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
         </tr>
         </tbody>
     </table>

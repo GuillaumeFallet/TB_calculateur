@@ -1,3 +1,10 @@
 .collapse.in {
     display: inline-table;
 }
+.hiddenRow {
+    display: none ;
+}
+
+.showRow {
+    display: table-row ;
+}
