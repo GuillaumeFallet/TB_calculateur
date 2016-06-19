@@ -32,9 +32,11 @@ $(function (){
         var max = parseFloat($(this).attr("max")) ;
         var newValue = value ;
         if( value < min) {
+            errorInput($(this)) ;
             newValue = min ;
         }
         else if (value > max) {
+            errorInput($(this)) ;
             newValue = max ;
         }
         $(this).prop("value",newValue) ;
@@ -52,9 +54,11 @@ $(function (){
         var max = parseFloat($(this).attr("max")) ;
         var newValue = value ;
         if( value < min) {
+            errorInput($(this)) ;
             newValue = min ;
         }
         else if (value > max) {
+            errorInput($(this)) ;
             newValue = max ;
         }
 
@@ -80,6 +84,18 @@ $(function (){
     calculateNuclProd() ;
     changeFuturConsoChart(0) ;
 }) ;
+
+function errorInput(input)
+{
+    input.css({ "background": "red" });
+    setTimeout(setNoBackground,3000,input);
+
+    function setNoBackground(input)
+    {
+        input.css({ "background": "none" }) ;
+    }
+
+}
 
 function calculateNuclProd()
 {

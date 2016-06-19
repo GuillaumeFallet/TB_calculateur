@@ -13,7 +13,7 @@
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
     <script type="text/javascript" src="scripts/scriptNucl.js"></script>
-
+    <script type="text/javascript" src="scripts/scriptPowerhouse.js"></script>
 </head>
 <body>
 
@@ -21,14 +21,14 @@
     <a href="#id_nuclear_table" class="btn btn-info" data-toggle="collapse"> [+/-] Fermeture des centrales nucléaires </a>
     <table id="id_nuclear_table" class="table table-hover collapse" >
         <thead>
-        <tr id="rowNucl">
+        <tr id="rowNucl" class="highlightYellow">
             <th>Centrale nucléaire</th>
             <th>Année de construction</th>
             <th>Puissance max. (MW)</th>
             <th>Durée de vie</th>
             <th>Date d'arrêt</th>
             <th>%</th>
-            <th>Production (GWh)</th>
+            <th>Production par année (GWh)</th>
         </tr>
         </thead>
     </table>
@@ -36,20 +36,31 @@
     <a href="#id_new_centrales_table" class="btn btn-info" data-toggle="collapse"> [+/-] Construction de nouvelles grandes centrales </a>
     <table id="id_new_centrales_table" class="table table-hover collapse" >
         <thead>
-        <tr>
+        <tr class="highlightYellow">
             <th>Type</th>
             <th>Date de mise en service</th>
+            <th>Date d'arrêt</th>
             <th>Puissance (MW)</th>
-            <th>Production estimée (TWh)</th>
+            <th>Production estimée par année (GWh)</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr class="hiddenRow">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr id="rowToClone" class="hiddenRow">
+            <td><select name="centralType">
+                <option value="nuclear">Centrale nucléaire</option>
+                <option value="gaz">Centrale à gaz</option>
+            </select></td>
+            <td><input type="number" value="2016"></td>
+            <td><input type="number" value="2100"></td>
+            <td><input type="number" value="500"></td>
+            <td><input type="number" value="3000"></td>
+            <td><button>Créer</button></td>
+        </tr>
+        <tr>
+            <td>
+                <button id="newCentralButton">Nouvelle centrale</button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -57,7 +68,7 @@
     <a href="#id_prod_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la production </a>
     <table id="id_prod_evolution_table" class="table table-hover collapse" >
         <thead>
-        <tr>
+        <tr class="highlightYellow">
             <th>Type</th>
             <th>Progression (% par année)</th>
             <th>Objectif 2050</th>
@@ -97,7 +108,7 @@
     <table id="id_conso_evolution_table" class="table table-hover collapse" >
         <tbody>
         <tr>
-            <td>Taux de progression de la consommation</td>
+            <td class="highlightYellow" >Taux de progression de la consommation</td>
             <td>+<input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
             <td>+<input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
         </tr>
@@ -107,7 +118,7 @@
     <a href="#id_price_table" class="btn btn-info" data-toggle="collapse"> [+/-] Prix MWh </a>
     <table id="id_price_table" class="table table-hover collapse" >
         <thead>
-        <tr>
+        <tr class="highlightYellow">
             <th>Type</th>
             <th>Prix</th>
             <th>Progression</th>

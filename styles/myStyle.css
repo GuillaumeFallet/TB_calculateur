@@ -8,3 +8,11 @@
 .showRow {
     display: table-row ;
 }
+
+.highlightYellow {
+    background-color: #FFFF88;
+}
+
+.highlight {
+    background-color: #DF0101;
+}
