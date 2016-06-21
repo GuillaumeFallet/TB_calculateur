@@ -39,23 +39,24 @@
         <tr class="highlightYellow">
             <th>Type</th>
             <th>Date de mise en service</th>
-            <th>Date d'arrêt</th>
+            <th>Durée de vie</th>
             <th>Puissance (MW)</th>
-            <th>Production estimée par année (GWh)</th>
-
+            <th>Heures de fonctionnement par année</th>
         </tr>
         </thead>
         <tbody>
         <tr id="rowToClone" class="hiddenRow">
-            <td><select name="centralType">
-                <option value="nuclear">Centrale nucléaire</option>
-                <option value="gaz">Centrale à gaz</option>
-            </select></td>
-            <td><input type="number" value="2016"></td>
-            <td><input type="number" value="2100"></td>
-            <td><input type="number" value="500"></td>
-            <td><input type="number" value="3000"></td>
-            <td><button>Créer</button></td>
+            <td id="newType">
+                <select class ="changeNewType">
+                    <option selected disabled>Choisissez le type de la nouvelle centrale</option>
+                    <option value="nuclear" >Centrale nucléaire</option>
+                    <option value="gaz">Centrale à gaz</option>
+                </select>
+            </td>
+            <td id="newDate"><input type="number" readonly></td>
+            <td id="newLifetime"><input type="number" readonly></td>
+            <td id="newPower"><input type="number" readonly></td>
+            <td id="newUptime"><input type="number" readonly></td>
         </tr>
         <tr>
             <td>
