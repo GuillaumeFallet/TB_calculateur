@@ -116,6 +116,26 @@ function calculateNuclProd()
         }
 
     });
+
+    $('#id_new_centrales_table > tbody').find('tr').each(function (i, el) {
+        var $tds = $(this).find('td') ;
+        var newDate = $tds.eq(1).find("input").val() ;
+        var endDate = parseInt($tds.eq(1).find("input").val()) + parseInt($tds.eq(2).find("input").val()) ;
+        console.log(endDate) ;
+
+        var prodPerYear = $tds.eq(3).find("input").val() * $tds.eq(4).find("input").val() / 1000 ;
+
+        for(var i = year-1 ; i <= 2050 ; i ++)
+        {
+            if (i > newDate && i < endDate)
+            {
+                globalArray['prod_nucl'][globalArray['years'].indexOf(i)] += prodPerYear ;
+            }
+        }
+
+    });
+
+
     prod_chart.series[4].update(globalArray['prod_nucl'],true) ;
     updateConsProdChart() ;
 }
