@@ -4,13 +4,10 @@
 
 $(function (){
 
-
-
     $('#evolution_conso').change(function(event) {
         var conso_today = globalArray['conso'][globalArray['years'].indexOf(year-2)];
         var rate = $('#evolution_conso').prop("value");
         var last_conso_futur =  changeFuturConsoChart(rate) ;
-        
         var goal = (last_conso_futur-conso_today) / 1000 ;
         goal = Math.round(goal) ;
         $('#evolution_conso_goal').prop("value",goal) ;
@@ -48,4 +45,22 @@ function changeFuturConsoChart(rate)
     prod_chart.series[5].update(globalArray['conso'],true) ;
     updateConsProdChart() ; 
     return  globalArray['conso'][globalArray['conso'].length-1] ;
+}
+
+function updateConsProdChart()
+{
+    var array_diff = [];
+    for (var i = 0 ; i < globalArray['years'].length ; i ++)
+    {
+        array_diff[i] = (
+        (globalArray['prod_nucl'][i]+
+        globalArray['prod_hydro_acc'][i]+
+        globalArray['prod_hydro_fil'][i]+
+        globalArray['prod_solar'][i]+
+        globalArray['prod_eol'][i]+
+        globalArray['prod_therm_centr'][i])-
+        globalArray['conso'][i]) ;
+    }
+
+    consoprod_chart.series[0].setData(array_diff,true) ;
 }

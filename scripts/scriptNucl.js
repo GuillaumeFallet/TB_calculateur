@@ -82,6 +82,7 @@ $(function (){
 
     Drawcharts() ;
     calculateNuclProd() ;
+    calculateProd() ; 
     changeFuturConsoChart(0) ;
 }) ;
 
@@ -121,7 +122,7 @@ function calculateNuclProd()
         var $tds = $(this).find('td') ;
         var newDate = $tds.eq(1).find("input").val() ;
         var endDate = parseInt($tds.eq(1).find("input").val()) + parseInt($tds.eq(2).find("input").val()) ;
-        console.log(endDate) ;
+        //console.log(endDate) ;
 
         var prodPerYear = $tds.eq(3).find("input").val() * $tds.eq(4).find("input").val() / 1000 ;
 
@@ -140,23 +141,7 @@ function calculateNuclProd()
     updateConsProdChart() ;
 }
 
-function updateConsProdChart()
-{
-    var array_diff = [];
-    for (var i = 0 ; i < globalArray['years'].length ; i ++)
-    {
-        array_diff[i] = (
-        (globalArray['prod_nucl'][i]+
-        globalArray['prod_hydro_acc'][i]+
-        globalArray['prod_hydro_fil'][i]+
-        globalArray['prod_solar'][i]+
-        globalArray['prod_eol'][i]+
-        globalArray['prod_therm_centr'][i])-
-        globalArray['conso'][i]) ;
-    }
 
-    consoprod_chart.series[0].setData(array_diff,true) ;
-}
 
 function Drawcharts() {
     prod_chart  = new Highcharts.Chart({

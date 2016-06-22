@@ -2,10 +2,13 @@
  * Created by Guillaume on 19.06.2016.
  */
 
-var countNew = 0 ;
-var newPlant = new Array() ;
+
+var countNew = 0 ; // count the number of new centrals (used for the id's of the elements) 
+
 
 $(function () {
+
+    // event when the "nouvelle centrale" button is pressed
     $("#newCentralButton").click(function() {
        countNew = countNew + 1 ;
        var $newRow =  $('#rowToClone').clone() ;
@@ -18,13 +21,14 @@ $(function () {
         //    console.log($(this).attr('id')) ;
         }) ;
     }) ;
-
+    // event when the "effacer" button is pressed
     $('body').on('click', '.deletePlantButton', function() {
         var idRow = $(this).closest("tr").attr("id") ;
         $('table#id_new_centrales_table tr#'+idRow).remove();
         calculateNuclProd() ;
     }) ;
 
+    // event when the user choose the type of the new central
     $('body').on('change', '.changeNewType', function() {
         var type = this.value;
         var idRow = $(this).closest("td").attr("id").split('_')[1];
@@ -58,6 +62,8 @@ $(function () {
 
         calculateNuclProd() ;
     }) ;
+
+    // event when the user changes anything in the parameters of the new centrals
     $('body').on('change', '.changeNewPlantParam', function() {
         calculateNuclProd() ;
     }) ;
