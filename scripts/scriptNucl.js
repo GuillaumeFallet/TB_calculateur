@@ -1,7 +1,7 @@
 /**
  * Created by Pydd on 06.06.2016.
  */
-
+//SALUT ARMAND
 var currentTime = new Date();
 var year = currentTime.getFullYear() ;
 var prod_chart  ;
