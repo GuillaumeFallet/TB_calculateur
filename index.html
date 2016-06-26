@@ -11,6 +11,7 @@
     <script src="scripts/third-party/highcharts.js"></script>
     <script type="text/javascript" src="documents/data.js"></script>
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
+    <script type="text/javascript" src="scripts/configScript.js"></script>
     <script type="text/javascript" src="scripts/scriptPrice.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
     <script type="text/javascript" src="scripts/scriptProd.js"></script>
@@ -129,37 +130,32 @@
         <tbody>
         <tr>
             <td>Nucléaire</td>
-            <td><input size="1" type="number" id="price_nuclear" value="5"> ct./kWh</td>
+            <td><input size="1" type="number"  step="0.5" id="price_nuclear"> ct./kWh</td>
             <td>+ <input size="1" type="number" id="price_nuclear_evolution" value="2"> %</td>
         </tr>
         <tr>
             <td>Centrale à gaz</td>
-            <td><input size="1" type="number" type="number" id="price_gaz" value="6"> ct./kWh</td>
+            <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
             <td>+ <input size="1" type="number" type="number" id="price_gaz_evolution" value="1.5"> %</td>
         </tr>
         <tr>
             <td>Hydroélectricité</td>
-            <td><input size="1" type="number" id="price_hydro" value="6"> ct./kWh</td>
+            <td><input size="1" type="number" step="0.5" id="price_hydro"> ct./kWh</td>
             <td>+ <input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
         </tr>
         <tr>
             <td>Eolien</td>
-            <td><input size="1" type="number" id="price_eolien" value="7.5"> ct./kWh</td>
+            <td><input size="1" type="number" step="0.5" id="price_eolien"> ct./kWh</td>
             <td>+ <input size="1" type="number" id="price_eolien_evolution" value="-2"> %</td>
         </tr>
         <tr>
             <td>Solaire</td>
-            <td><input size="1" type="number" id="price_solar" value="9"> ct./kWh</td>
+            <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
             <td>+ <input size="1" type="number" id="price_solar_evolution" value="-5"> %</td>
         </tr>
         <tr>
-            <td>Géothermie</td>
-            <td><input size="1" type="number" id="price_geotherm" value="0"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_geotherm_evolution" value="0"> %</td>
-        </tr>
-        <tr>
             <td>Importations</td>
-            <td><input size="1" type="number id="price_import" value="7"> ct./kWh</td>
+            <td><input size="1" type="number" id="price_import"> ct./kWh</td>
             <td>+ <input size="1" type="number" id="price_import_evolution" value="-5"> %</td>
         </tr>
         </tbody>

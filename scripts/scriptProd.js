@@ -20,15 +20,13 @@ function calculateProd()
 
     for(var i = year-1 ; i <= 2050 ; i ++)
     {
-
         globalArray['prod_hydro_acc'][globalArray['years'].indexOf(i)] =Math.round(globalArray['prod_hydro_acc'][globalArray['years'].indexOf(i-1)]*(1+hydro_acc_rate/100)) ;
         globalArray['prod_hydro_fil'][globalArray['years'].indexOf(i)] =Math.round(globalArray['prod_hydro_fil'][globalArray['years'].indexOf(i-1)]*(1+hydro_fil_rate/100))
         globalArray['prod_solar'][globalArray['years'].indexOf(i)] =Math.round(globalArray['prod_solar'][globalArray['years'].indexOf(i-1)]*(1+solar_rate/100))
         globalArray['prod_eol'][globalArray['years'].indexOf(i)] =Math.round(globalArray['prod_eol'][globalArray['years'].indexOf(i-1)]*(1+eol_rate/100))
         globalArray['prod_gaz_centr'][globalArray['years'].indexOf(i)] =Math.round(globalArray['prod_gaz_centr'][globalArray['years'].indexOf(i-1)]*(1+therm_rate/100))
     }
-
-
+    
     updateProdChart() ;
     updateConsProdChart() ;
 }

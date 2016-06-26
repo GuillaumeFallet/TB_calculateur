@@ -38,17 +38,17 @@ $(function () {
         var newUptime ;
         if (type=="nuclear")
         {
-            newDate = year+7 ;
-            newLifetime = 45 ;
-            newPower = 1000 ;
-            newUptime = 7000 ;
+            newDate = year+config.DEFAULT_NUCL_CONSTRUCT_TIME ;
+            newLifetime = config.DEFAULT_NUCL_LIFETIME ;
+            newPower = config.DEFAULT_NUCL_POWER ;
+            newUptime = config.DEFAULT_NUCL_UPTIME ;
         }
         else if (type=="gaz")
         {
-            newDate = year+3 ;
-            newLifetime = 20 ;
-            newPower = 400 ;
-            newUptime = 4000 ;
+            newDate = year+config.DEFAULT_GAZ_CONSTRUCT_TIME ;
+            newLifetime = config.DEFAULT_GAZ_LIFETIME ;
+            newPower = config.DEFAULT_GAZ_POWER ;
+            newUptime = config.DEFAULT_GAZ_UPTIME ;
         }
 
         $('#newDate_'+idRow).find('input').prop("value",newDate) ;
