@@ -1,7 +1,6 @@
 /**
  * Created by Pydd on 06.06.2016.
  */
-//SALUT ARMAND
 var currentTime = new Date();
 var year = currentTime.getFullYear() ;
 var prod_chart  ;
@@ -41,7 +40,7 @@ $(function (){
         }
         $(this).prop("value",newValue) ;
         $('#stopdate_'+splitid[1]).prop("value",parseFloat($('#constructYear_'+splitid[1]).text()) + newValue) ;
-        calculateNuclProd() ;
+        calculateNuclAndGazProd() ;
     });
 
     $('.input_stopdate').change(function(event){
@@ -65,7 +64,7 @@ $(function (){
         $(this).prop("value",newValue) ;
         $('#lifetime_'+splitid[1]).prop("value",parseFloat(newValue - parseFloat($('#constructYear_'+splitid[1]).text()))) ;
 
-        calculateNuclProd() ;
+        calculateNuclAndGazProd() ;
 
     });
 
@@ -77,12 +76,12 @@ $(function (){
     globalArray['prod_hydro_fil'] = prod_hydro_fil ;
     globalArray['prod_solar'] = prod_solar ;
     globalArray['prod_eol'] = prod_eol ;
-    globalArray['prod_therm_centr'] = prod_therm_centr ;
+    globalArray['prod_gaz_centr'] = prod_gaz_centr ;
     globalArray['conso'] = conso ;
 
     Drawcharts() ;
-    calculateNuclProd() ;
-    calculateProd() ; 
+    calculateNuclAndGazProd() ;
+    calculateProd() ;
     changeFuturConsoChart(0) ;
 }) ;
 
@@ -98,11 +97,12 @@ function errorInput(input)
 
 }
 
-function calculateNuclProd()
+function calculateNuclAndGazProd()
 {
     for(var i = year-1 ; i <= 2050 ; i ++)
     {
         globalArray['prod_nucl'][globalArray['years'].indexOf(i)] = 0 ;
+        globalArray['prod_gaz_centr'][globalArray['years'].indexOf(i)] = 0 ;
     }
 
     $('#id_nuclear_table > tbody').find('tr').each(function (i, el) {
@@ -120,25 +120,34 @@ function calculateNuclProd()
 
     $('#id_new_centrales_table > tbody').find('tr').each(function (i, el) {
         var $tds = $(this).find('td') ;
-        var newDate = $tds.eq(1).find("input").val() ;
-        var endDate = parseInt($tds.eq(1).find("input").val()) + parseInt($tds.eq(2).find("input").val()) ;
+        var type = $tds.eq(0).find('select').val()  ;
+        //   console.log(type) ;
+
+        var newDate = $tds.eq(1).find("input").val();
+        var endDate = parseInt($tds.eq(1).find("input").val()) + parseInt($tds.eq(2).find("input").val());
         //console.log(endDate) ;
+        var prodPerYear = $tds.eq(3).find("input").val() * $tds.eq(4).find("input").val() / 1000;
+        if (type=="nuclear") {
+            for (var i = year - 1; i <= 2050; i++) {
+                if (i > newDate && i < endDate) {
+                    globalArray['prod_nucl'][globalArray['years'].indexOf(i)] += prodPerYear;
+                }
+            }
 
-        var prodPerYear = $tds.eq(3).find("input").val() * $tds.eq(4).find("input").val() / 1000 ;
-
-        for(var i = year-1 ; i <= 2050 ; i ++)
+        }
+        else if (type="gaz")
         {
-            if (i > newDate && i < endDate)
-            {
-                globalArray['prod_nucl'][globalArray['years'].indexOf(i)] += prodPerYear ;
+            for (var i = year - 1; i <= 2050; i++) {
+                if (i > newDate && i < endDate) {
+                    globalArray['prod_gaz_centr'][globalArray['years'].indexOf(i)] += prodPerYear;
+                }
             }
         }
-
     });
 
-
-    prod_chart.series[4].update(globalArray['prod_nucl'],true) ;
+    updateProdChart() ;
     updateConsProdChart() ;
+
 }
 
 
@@ -218,8 +227,8 @@ function Drawcharts() {
                 marker: {
                     enabled: false
                 },
-                name: 'Thermique',
-                data: globalArray['prod_therm_centr'],
+                name: 'Gaz',
+                data: globalArray['prod_gaz_centr'],
                 stacking: 'normal'
             }, {
                 marker: {
@@ -272,7 +281,6 @@ function Drawcharts() {
                 color: 'black'
             }]
 
-
         },
         series: [{
             name: 'Différence entre consommation et production',
@@ -282,4 +290,80 @@ function Drawcharts() {
             }
         }]
     });
+
+    price_chart  = new Highcharts.Chart({
+        chart: {
+            renderTo : container_price_chart
+        },
+        title: {
+            text: 'Évolution du prix de l\x27électricité'
+        },
+        xAxis: {
+            categories: years,
+            text: 'Années',
+            plotLines: [{
+                color: 'black', // Color value
+                value: year-1960, // Value of where the line will appear
+                width: 3, // Width of the line
+                zIndex: 10
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Prix en ct./kWh'
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'black'
+            }]
+
+        },
+        series: [{
+            name: 'Prix de l\x27électricité',
+            data: [] ,
+            marker: {
+                enabled: false
+            }
+        }]
+    });
+
+    pollution_chart  = new Highcharts.Chart({
+        chart: {
+            renderTo : container_pollution_chart
+        },
+        title: {
+            text: 'Évolution des émissions de CO2'
+        },
+        xAxis: {
+            categories: years,
+            text: 'Années',
+            plotLines: [{
+                color: 'black', // Color value
+                value: year-1960, // Value of where the line will appear
+                width: 3, // Width of the line
+                zIndex: 10
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Émissions de CO2 en g de CO2/kWh'
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'black'
+            }]
+
+        },
+        series: [{
+            name: 'Émissions de CO2',
+            data: [] ,
+            marker: {
+                enabled: false
+            }
+        }]
+    });
+
+
 }

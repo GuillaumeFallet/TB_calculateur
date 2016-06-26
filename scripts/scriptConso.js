@@ -42,7 +42,8 @@ function changeFuturConsoChart(rate)
         globalArray['conso'][globalArray['years'].indexOf(i)] =Math.round(conso_today/100*(100+rate*j)) ;
         j ++ ;
     }
-    prod_chart.series[5].update(globalArray['conso'],true) ;
+
+    updateProdChart() ; 
     updateConsProdChart() ; 
     return  globalArray['conso'][globalArray['conso'].length-1] ;
 }
@@ -58,9 +59,10 @@ function updateConsProdChart()
         globalArray['prod_hydro_fil'][i]+
         globalArray['prod_solar'][i]+
         globalArray['prod_eol'][i]+
-        globalArray['prod_therm_centr'][i])-
+        globalArray['prod_gaz_centr'][i])-
         globalArray['conso'][i]) ;
     }
 
     consoprod_chart.series[0].setData(array_diff,true) ;
+    
 }

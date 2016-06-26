@@ -11,6 +11,7 @@
     <script src="scripts/third-party/highcharts.js"></script>
     <script type="text/javascript" src="documents/data.js"></script>
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
+    <script type="text/javascript" src="scripts/scriptPrice.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
     <script type="text/javascript" src="scripts/scriptProd.js"></script>
     <script type="text/javascript" src="scripts/scriptNucl.js"></script>
@@ -35,6 +36,7 @@
     </table>
     <br>
     <a href="#id_new_centrales_table" class="btn btn-info" data-toggle="collapse"> [+/-] Construction de nouvelles grandes centrales </a>
+    <button id="newCentralButton">Nouvelle centrale</button>
     <table id="id_new_centrales_table" class="table table-hover collapse" >
         <thead>
         <tr class="highlightYellow">
@@ -49,7 +51,7 @@
         <tr id="rowToClone" class="hiddenRow">
             <td id="newType">
                 <select class ="changeNewType">
-                    <option selected disabled>Choisissez le type de la nouvelle centrale</option>
+                    <option value ="none" selected disabled >Choisissez le type de la nouvelle centrale</option>
                     <option value="nuclear" >Centrale nucléaire</option>
                     <option value="gaz">Centrale à gaz</option>
                 </select>
@@ -60,11 +62,7 @@
             <td id="newUptime"><input class ="changeNewPlantParam"type="number" step="100" readonly></td>
             <td id="deletePlant"><button class="deletePlantButton">Effacer</button></td>
         </tr>
-        <tr>
-            <td>
-                <button id="newCentralButton">Nouvelle centrale</button>
-            </td>
-        </tr>
+
         </tbody>
     </table>
     <br>
@@ -170,6 +168,8 @@
 
     <div id="container_nucl_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
     <div id="container_cons_prod_chart" style="width: 800px; display: inline-block; margin: 0 auto"></div>
+    <div id="container_price_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+    <div id="container_pollution_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
 
 <br>
 </body>
