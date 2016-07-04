@@ -31,11 +31,11 @@ function calculateMix() {
 
         var indexYear = globalArray['years'].indexOf(i) ;
         var totalYear = globalArray['prod_nucl'][indexYear] +
-                        globalArray['prod_hydro_acc'][indexYear] +
-                        globalArray['prod_hydro_fil'][indexYear] +
-                        globalArray['prod_solar'][indexYear] +
-                        globalArray['prod_eol'][indexYear] +
-                        globalArray['prod_gaz_centr'][indexYear] ;
+            globalArray['prod_hydro_acc'][indexYear] +
+            globalArray['prod_hydro_fil'][indexYear] +
+            globalArray['prod_solar'][indexYear] +
+            globalArray['prod_eol'][indexYear] +
+            globalArray['prod_gaz_centr'][indexYear] ;
 
         mixArray['prod_nucl'][indexYear] = globalArray['prod_nucl'][indexYear] / totalYear * 100 ;
         mixArray['prod_hydro_acc'][indexYear] = globalArray['prod_hydro_acc'][indexYear] / totalYear * 100 ;
@@ -44,7 +44,7 @@ function calculateMix() {
         mixArray['prod_eol'][indexYear] = globalArray['prod_eol'][indexYear] / totalYear * 100 ;
         mixArray['prod_gaz_centr'][indexYear] = globalArray['prod_gaz_centr'][indexYear] / totalYear * 100 ;
 
-       // console.log("Années : "+mixArray['years'][indexYear]+" Total : "+totalYear+". Hydro Acc : "+globalArray['prod_hydro_acc'][indexYear]+" % : "+mixArray['prod_hydro_acc'][indexYear]) ;
+        // console.log("Années : "+mixArray['years'][indexYear]+" Total : "+totalYear+". Hydro Acc : "+globalArray['prod_hydro_acc'][indexYear]+" % : "+mixArray['prod_hydro_acc'][indexYear]) ;
     }
 
     calculatePrice();
@@ -54,26 +54,57 @@ function calculatePrice()
 {
     var priceArray = new Array () ;
 
-    var priceNucl = $('#price_nuclear').val() ;
-    var priceHydroAcc = $('#price_hydro').val() ;
-    var priceSolar = $('#price_solar').val() ;
-    var priceEol = $('#price_eolien').val() ;
-    var priceGaz = $('#price_gaz').val() ;
-   // var priceImport = $('#price_import').val() ;
 
+    //var priceNucl = $('#price_nuclear').val() ;
+    //var priceHydroAcc = $('#price_hydro').val() ;
+    //var priceSolar = $('#price_solar').val() ;
+    //var priceEol = $('#price_eolien').val() ;
+    //var priceGaz = $('#price_gaz').val() ;
 
-    for (var i = 1960; i <= 2050; i++) {
+    var priceNucl = new Array() ;
+    var priceNuclRate = $('#price_nuclear_evolution').val() ;
+    priceNucl[globalArray['years'].indexOf(year)] = $('#price_nuclear').val() ;
+
+    var priceHydroAcc = new Array() ;
+    var priceHydroAccRate = $('#price_hydro_evolution').val() ;
+    priceHydroAcc[globalArray['years'].indexOf(year)] = $('#price_hydro').val() ;
+
+    var priceSolar = new Array() ;
+    var priceSolarRate = $('#price_solar_evolution').val() ;
+    priceSolar[globalArray['years'].indexOf(year)] = $('#price_solar').val() ;
+
+    var priceEol = new Array() ;
+    var priceEolRate = $('#price_eolien_evolution').val() ;
+    priceEol[globalArray['years'].indexOf(year)] = $('#price_eolien').val() ;
+
+    var priceGaz = new Array() ;
+    var priceGazRate = $('#price_gaz_evolution').val() ;
+    priceGaz[globalArray['years'].indexOf(year)] = $('#price_gaz').val() ;
+
+    for (var i = year+1 ; i <=2050 ; i ++)
+    {
         var indexYear = globalArray['years'].indexOf(i) ;
 
-        var weightedMean = (priceNucl*mixArray['prod_nucl'][indexYear] +
-            priceHydroAcc*mixArray['prod_hydro_acc'][indexYear] +
-            priceSolar*mixArray['prod_solar'][indexYear] +
-            priceEol*mixArray['prod_eol'][indexYear] +
-            priceGaz*mixArray['prod_gaz_centr'][indexYear])/100 ;
+        priceNucl[indexYear] = priceNucl[indexYear-1] * (1 + priceNuclRate / 100);
+        priceHydroAcc[indexYear] = priceHydroAcc[indexYear-1] * (1 + priceHydroAccRate / 100);
+        priceSolar[indexYear] = priceSolar[indexYear-1] * (1 + priceSolarRate / 100);
+        priceEol[indexYear] = priceEol[indexYear-1] * (1 + priceEolRate / 100);
+        priceGaz[indexYear] = priceGaz[indexYear-1] * (1 + priceGazRate / 100);
+    }
+
+
+    for (var i = year; i <= 2050; i++) {
+        var indexYear = globalArray['years'].indexOf(i) ;
+        var weightedMean = (
+                priceNucl[indexYear]*mixArray['prod_nucl'][indexYear] +
+                priceHydroAcc[indexYear]*mixArray['prod_hydro_acc'][indexYear] +
+                priceSolar[indexYear]*mixArray['prod_solar'][indexYear] +
+                priceEol[indexYear]*mixArray['prod_eol'][indexYear] +
+                priceGaz[indexYear]*mixArray['prod_gaz_centr'][indexYear]
+            )/100 ;
 
         weightedMean = Math.round(weightedMean*100)/100 ;
         priceArray.push(weightedMean) ;
-
     }
 
     price_chart.series[0].setData(priceArray,true) ;
@@ -85,7 +116,7 @@ function calculatePollution()
 {
     var pollutionArray = new Array () ;
 
-    for (var i = 1960; i <= 2050; i++) {
+    for (var i = year; i <= 2050; i++) {
         var indexYear = globalArray['years'].indexOf(i) ;
 
         var weightedMean = (config.DEFAULT_NUCL_POLLUTION*mixArray['prod_nucl'][indexYear] +

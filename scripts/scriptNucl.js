@@ -299,7 +299,7 @@ function Drawcharts() {
             text: 'Évolution du prix de l\x27électricité'
         },
         xAxis: {
-            categories: years,
+            categories: futurYears,
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
@@ -336,7 +336,7 @@ function Drawcharts() {
             text: 'Évolution des émissions de CO2'
         },
         xAxis: {
-            categories: years,
+            categories: futurYears,
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
