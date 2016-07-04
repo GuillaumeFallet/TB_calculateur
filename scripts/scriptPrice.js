@@ -92,6 +92,9 @@ function calculatePrice()
         priceGaz[indexYear] = priceGaz[indexYear-1] * (1 + priceGazRate / 100);
     }
 
+    var max = 0 ;
+    var min = 100000 ;
+    var total = 0 ;
 
     for (var i = year; i <= 2050; i++) {
         var indexYear = globalArray['years'].indexOf(i) ;
@@ -104,9 +107,24 @@ function calculatePrice()
             )/100 ;
 
         weightedMean = Math.round(weightedMean*100)/100 ;
+        if(weightedMean>max)
+        {
+            max = weightedMean ;
+        }
+        if (weightedMean<min)
+        {
+            min = weightedMean ;
+        }
+        total = total + weightedMean ;
+
         priceArray.push(weightedMean) ;
     }
 
+    var avg = total/(2050-year+1) ;
+    avg = Math.round(avg*100)/100 ;
+    $('#label_elec_min').html(min) ;
+    $('#label_elec_max').html(max) ;
+    $('#label_elec_avg').html(avg) ;
     price_chart.series[0].setData(priceArray,true) ;
 
 
@@ -115,6 +133,9 @@ function calculatePrice()
 function calculatePollution()
 {
     var pollutionArray = new Array () ;
+    var max = 0 ;
+    var min = 100000 ;
+    var total = 0 ;
 
     for (var i = year; i <= 2050; i++) {
         var indexYear = globalArray['years'].indexOf(i) ;
@@ -126,8 +147,22 @@ function calculatePollution()
             config.DEFAULT_GAZ_POLLUTION*mixArray['prod_gaz_centr'][indexYear])/100 ;
 
         weightedMean = Math.round(weightedMean*100)/100 ;
+        if(weightedMean>max)
+        {
+            max = weightedMean ;
+        }
+        if (weightedMean<min)
+        {
+            min = weightedMean ;
+        }
+        total = total + weightedMean ;
         pollutionArray.push(weightedMean) ;
     }
 
+    var avg = total/(2050-year+1) ;
+    avg = Math.round(avg*100)/100 ;
+    $('#label_poll_min').html(min) ;
+    $('#label_poll_max').html(max) ;
+    $('#label_poll_avg').html(avg) ;
     pollution_chart.series[0].setData(pollutionArray,true) ;
 }

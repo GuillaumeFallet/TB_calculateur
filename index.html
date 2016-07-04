@@ -99,11 +99,11 @@
             <td><input size="1" step="0.1"  type="number" id="evolution_eolien" value="0"> %</td>
             <td><input size="1" type="number" id="evolution_eolien_goal" value="0"> TWh</td>
         </tr>
-      <!--  <tr>
-            <td>Géothermie</td>
-            <td><input size="1" step="0.1"  type="number" id="evolution_geothe" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_geoth_goal" value="0"> TWh</td>
-        </tr> -->
+        <!--  <tr>
+              <td>Géothermie</td>
+              <td><input size="1" step="0.1"  type="number" id="evolution_geothe" value="0"> %</td>
+              <td><input size="1" type="number" id="evolution_geoth_goal" value="0"> TWh</td>
+          </tr> -->
         </tbody>
     </table>
     <br>
@@ -163,11 +163,48 @@
     </table>
 </div>
 
-    <div id="container_nucl_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
-    <div id="container_cons_prod_chart" style="width: 800px; display: inline-block; margin: 0 auto"></div>
-    <div id="container_price_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
-    <div id="container_pollution_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+<div id="container_nucl_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+<div id="container_cons_prod_chart" style="width: 800px; display: inline-block; margin: 0 auto"></div>
+<div id="container_price_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+<div id="container_pollution_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
 
 <br>
+
+
+<div>
+    <table  class="table table-hover">
+        <thead>
+        <tr>
+            <th>Prix de l'électricité minimum (en ct./kWh)</th>
+            <th>Prix de l'électricité maximum (en ct./kWh)</th>
+            <th>Prix de l'électricité moyen (en ct./kWh)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="label_elec_min"></td>
+            <td id="label_elec_max"></td>
+            <td id="label_elec_avg"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Émissions de CO2 minimum (en g de CO2/kWh)</th>
+            <th>Émissions de CO2 maximum (en g de CO2/kWh)</th>
+            <th>Émissions de CO2 moyennes (en g de CO2/kWh)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="label_poll_min"></td>
+            <td id="label_poll_max"></td>
+            <td id="label_poll_avg"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
