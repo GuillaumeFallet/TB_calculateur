@@ -11,6 +11,7 @@
     <script src="scripts/third-party/highcharts.js"></script>
     <script type="text/javascript" src="documents/data.js"></script>
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
+    <script type="text/javascript" src="scripts/scriptCalcul.js"></script>
     <script type="text/javascript" src="scripts/configScript.js"></script>
     <script type="text/javascript" src="scripts/scriptPrice.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
@@ -20,11 +21,11 @@
 </head>
 <body>
 
-<div class="container-fluid"  >
+<div class="container-fluid">
     <a href="#id_nuclear_table" class="btn btn-info" data-toggle="collapse"> [+/-] Fermeture des centrales nucléaires </a>
     <table id="id_nuclear_table" class="table table-hover collapse" >
         <thead>
-        <tr id="rowNucl" class="highlightYellow">
+        <tr id="rowNucl">
             <th>Centrale nucléaire</th>
             <th>Année de construction</th>
             <th>Puissance max. (MW)</th>
@@ -40,7 +41,7 @@
     <button id="newCentralButton">Nouvelle centrale</button>
     <table id="id_new_centrales_table" class="table table-hover collapse" >
         <thead>
-        <tr class="highlightYellow">
+        <tr>
             <th>Type</th>
             <th>Date de mise en service</th>
             <th>Durée de vie</th>
@@ -70,7 +71,7 @@
     <a href="#id_prod_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la production </a>
     <table id="id_prod_evolution_table" class="table table-hover collapse" >
         <thead>
-        <tr class="highlightYellow">
+        <tr>
             <th>Type</th>
             <th>Progression (% par année)</th>
             <th>Objectif 2050</th>
@@ -80,29 +81,29 @@
         <tbody>
         <tr>
             <td>Hydraulique (accumulation)</td>
-            <td><input size="1" type="number" id="evolution_hydroacc" value="0"> %</td>
-            <td>+ <input size="1" type="number" id="evolution_hydroacc_goal" value="0"> TWh</td>
+            <td><input size="1" step="0.1" type="number" id="evolution_hydroacc" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_hydroacc_goal" value="0"> TWh</td>
         </tr>
         <tr>
             <td>Hydraulique au fil de l'eau</td>
-            <td><input size="1" type="number" id="evolution_hydrofil" value="0"> %</td>
-            <td>+ <input size="1" type="number" id="evolution_hydrofil_goal" value="0"> TWh</td>
+            <td><input size="1" step="0.1"  type="number" id="evolution_hydrofil" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_hydrofil_goal" value="0"> TWh</td>
         </tr>
         <tr>
             <td>Solaire</td>
-            <td><input size="1" type="number" id="evolution_solar" value="0"> %</td>
-            <td>+ <input size="1" type="number" id="evolution_solar_goal" value="0"> TWh</td>
+            <td><input size="1" step="0.1"  type="number" id="evolution_solar" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_solar_goal" value="0"> TWh</td>
         </tr>
         <tr>
             <td>Eolien</td>
-            <td><input size="1" type="number" id="evolution_eolien" value="0"> %</td>
-            <td>+ <input size="1" type="number" id="evolution_eolien_goal" value="0"> TWh</td>
+            <td><input size="1" step="0.1"  type="number" id="evolution_eolien" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_eolien_goal" value="0"> TWh</td>
         </tr>
-        <tr>
+      <!--  <tr>
             <td>Géothermie</td>
-            <td><input size="1" type="number" id="evolution_geothe" value="0"> %</td>
-            <td>+ <input size="1" type="number" id="evolution_geoth_goal" value="0"> TWh</td>
-        </tr>
+            <td><input size="1" step="0.1"  type="number" id="evolution_geothe" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_geoth_goal" value="0"> TWh</td>
+        </tr> -->
         </tbody>
     </table>
     <br>
@@ -110,9 +111,9 @@
     <table id="id_conso_evolution_table" class="table table-hover collapse" >
         <tbody>
         <tr>
-            <td class="highlightYellow" >Taux de progression de la consommation</td>
-            <td>+<input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
-            <td>+<input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
+            <td>Taux de progression de la consommation</td>
+            <td><input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
+            <td><input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
         </tr>
         </tbody>
     </table>
@@ -120,7 +121,7 @@
     <a href="#id_price_table" class="btn btn-info" data-toggle="collapse"> [+/-] Prix MWh </a>
     <table id="id_price_table" class="table table-hover collapse" >
         <thead>
-        <tr class="highlightYellow">
+        <tr>
             <th>Type</th>
             <th>Prix</th>
             <th>Progression</th>
@@ -131,32 +132,32 @@
         <tr>
             <td>Nucléaire</td>
             <td><input size="1" type="number"  step="0.5" id="price_nuclear"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_nuclear_evolution" value="2"> %</td>
+            <td><input size="1" type="number" id="price_nuclear_evolution" value="2"> %</td>
         </tr>
         <tr>
             <td>Centrale à gaz</td>
             <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
-            <td>+ <input size="1" type="number" type="number" id="price_gaz_evolution" value="1.5"> %</td>
+            <td><input size="1" type="number" type="number" id="price_gaz_evolution" value="1.5"> %</td>
         </tr>
         <tr>
             <td>Hydroélectricité</td>
             <td><input size="1" type="number" step="0.5" id="price_hydro"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
+            <td><input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
         </tr>
         <tr>
             <td>Eolien</td>
             <td><input size="1" type="number" step="0.5" id="price_eolien"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_eolien_evolution" value="-2"> %</td>
+            <td><input size="1" type="number" id="price_eolien_evolution" value="-2"> %</td>
         </tr>
         <tr>
             <td>Solaire</td>
             <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_solar_evolution" value="-5"> %</td>
+            <td><input size="1" type="number" id="price_solar_evolution" value="-5"> %</td>
         </tr>
         <tr>
             <td>Importations</td>
             <td><input size="1" type="number" id="price_import"> ct./kWh</td>
-            <td>+ <input size="1" type="number" id="price_import_evolution" value="-5"> %</td>
+            <td><input size="1" type="number" id="price_import_evolution" value="-5"> %</td>
         </tr>
         </tbody>
     </table>
