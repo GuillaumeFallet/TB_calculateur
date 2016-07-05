@@ -18,7 +18,6 @@ $(function (){
         var conso_today = globalArray['conso'][globalArray['years'].indexOf(year-2)];
         var goal =  parseInt($('#evolution_conso_goal').prop("value"))*1000 ;
 
-        console.log(goal) ;
         var rate = findRate(conso_today,goal) ;
         $('#evolution_conso').prop("value",rate) ;
         changeFuturConsoChart(rate);
