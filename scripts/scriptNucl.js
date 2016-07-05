@@ -139,6 +139,7 @@ function calculateNuclAndGazProd()
         {
             for (var i = year - 1; i <= 2050; i++) {
                 if (i > newDate && i < endDate) {
+                    console.log(prodPerYear) ; 
                     globalArray['prod_gaz_centr'][globalArray['years'].indexOf(i)] += prodPerYear;
                 }
             }

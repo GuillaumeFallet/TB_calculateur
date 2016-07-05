@@ -31,7 +31,7 @@ function updateProdChart() {
     prod_chart.series[0].update(globalArray['prod_solar'],true) ;
     prod_chart.series[1].update(globalArray['prod_eol'],true) ;
     prod_chart.series[2].update(globalArray['prod_hydro_acc'],true) ;
-    // prod_chart.series[3].update(globalArray['prod_gaz_centr'],true) ;
+    prod_chart.series[3].update(globalArray['prod_gaz_centr'],true) ;
     prod_chart.series[4].update(globalArray['prod_nucl'],true) ;
     prod_chart.series[5].update(globalArray['conso'],true) ;
 }
