@@ -9,6 +9,7 @@
     <script src="scripts/third-party/jquery.min.js"></script>
     <script src="scripts/third-party/bootstrap.min.js"></script>
     <script src="scripts/third-party/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript" src="documents/data.js"></script>
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
     <script type="text/javascript" src="scripts/scriptCalcul.js"></script>
@@ -73,37 +74,27 @@
         <thead>
         <tr>
             <th>Type</th>
-            <th>Progression (% par année)</th>
             <th>Objectif 2050</th>
 
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>Hydraulique (accumulation)</td>
-            <td><input size="1" step="0.1" type="number" id="evolution_hydroacc" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_hydroacc_goal" value="0"> TWh</td>
-        </tr>
-        <tr>
-            <td>Hydraulique au fil de l'eau</td>
-            <td><input size="1" step="0.1"  type="number" id="evolution_hydrofil" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_hydrofil_goal" value="0"> TWh</td>
+            <td>Hydraulique</td>
+            <td><input size="1" type="range" id="evolution_hydro_goal" value="0"> TWh</td>
         </tr>
         <tr>
             <td>Solaire</td>
-            <td><input size="1" step="0.1"  type="number" id="evolution_solar" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_solar_goal" value="0"> TWh</td>
+            <td><input size="1" type="range" id="evolution_solar_goal" value="0"> TWh</td>
         </tr>
         <tr>
             <td>Eolien</td>
-            <td><input size="1" step="0.1"  type="number" id="evolution_eolien" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_eolien_goal" value="0"> TWh</td>
+            <td><input size="1" type="range" id="evolution_eolien_goal" value="0"> TWh</td>
         </tr>
-        <!--  <tr>
-              <td>Géothermie</td>
-              <td><input size="1" step="0.1"  type="number" id="evolution_geothe" value="0"> %</td>
-              <td><input size="1" type="number" id="evolution_geoth_goal" value="0"> TWh</td>
-          </tr> -->
+        <tr>
+            <td>Géothermie</td>
+            <td><input size="1" type="range" id="evolution_geoth_goal" value="0"> TWh</td>
+        </tr>
         </tbody>
     </table>
     <br>
@@ -135,14 +126,14 @@
             <td><input size="1" type="number" id="price_nuclear_evolution" value="0"> %</td>
         </tr>
         <tr>
-            <td>Centrale à gaz</td>
-            <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
-            <td><input size="1" type="number" type="number" id="price_gaz_evolution" value="0"> %</td>
-        </tr>
-        <tr>
             <td>Hydroélectricité</td>
             <td><input size="1" type="number" step="0.5" id="price_hydro"> ct./kWh</td>
             <td><input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
+        </tr>
+        <tr>
+            <td>Solaire</td>
+            <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
+            <td><input size="1" type="number" id="price_solar_evolution" value="0"> %</td>
         </tr>
         <tr>
             <td>Eolien</td>
@@ -150,9 +141,14 @@
             <td><input size="1" type="number" id="price_eolien_evolution" value="0"> %</td>
         </tr>
         <tr>
-            <td>Solaire</td>
-            <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_solar_evolution" value="0"> %</td>
+            <td>Centrale à gaz</td>
+            <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
+            <td><input size="1" type="number" type="number" id="price_gaz_evolution" value="0"> %</td>
+        </tr>
+        <tr>
+            <td>Géo-thermie</td>
+            <td><input size="1" type="number" type="number" step="0.5" id="price_geotherm"> ct./kWh</td>
+            <td><input size="1" type="number" type="number" id="price_geotherm_evolution" value="0"> %</td>
         </tr>
         <tr>
             <td>Importations</td>
@@ -173,37 +169,34 @@
 
 <div>
     <table  class="table table-hover">
-        <thead>
         <tr>
             <th>Prix de l'électricité minimum (en ct./kWh)</th>
-            <th>Prix de l'électricité maximum (en ct./kWh)</th>
-            <th>Prix de l'électricité moyen (en ct./kWh)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
             <td id="label_elec_min"></td>
+        </tr>
+        <tr>
+            <th>Prix de l'électricité maximum (en ct./kWh)</th>
             <td id="label_elec_max"></td>
+        </tr>
+        <tr>
+            <th>Prix de l'électricité moyen (en ct./kWh)</th>
             <td id="label_elec_avg"></td>
         </tr>
-        </tbody>
     </table>
 
     <table class="table table-hover">
-        <thead>
+
         <tr>
             <th>Émissions de CO2 minimum (en g de CO2/kWh)</th>
-            <th>Émissions de CO2 maximum (en g de CO2/kWh)</th>
-            <th>Émissions de CO2 moyennes (en g de CO2/kWh)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
             <td id="label_poll_min"></td>
+        </tr>
+            <th>Émissions de CO2 maximum (en g de CO2/kWh)</th>
             <td id="label_poll_max"></td>
+        </tr>
+        <tr>
+            <th>Émissions de CO2 moyennes (en g de CO2/kWh)</th>
             <td id="label_poll_avg"></td>
         </tr>
-        </tbody>
+
     </table>
 </div>
 </body>

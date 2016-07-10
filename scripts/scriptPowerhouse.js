@@ -25,7 +25,7 @@ $(function () {
     $('body').on('click', '.deletePlantButton', function() {
         var idRow = $(this).closest("tr").attr("id") ;
         $('table#id_new_centrales_table tr#'+idRow).remove();
-        calculateNuclAndGazProd() ;
+        calculateProd() ;
     }) ;
 
     // event when the user choose the type of the new central
@@ -60,12 +60,12 @@ $(function () {
         $('#newPower_'+idRow).find('input').attr("readonly", false);
         $('#newUptime_'+idRow).find('input').attr("readonly", false);
 
-        calculateNuclAndGazProd() ;
+        calculateProd() ;
     }) ;
 
     // event when the user changes anything in the parameters of the new centrals
     $('body').on('change', '.changeNewPlantParam', function() {
-        calculateNuclAndGazProd() ;
+        calculateProd() ;
     }) ;
 
 }) ;

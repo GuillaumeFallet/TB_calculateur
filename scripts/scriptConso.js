@@ -2,6 +2,7 @@
  * Created by Pydd on 09.06.2016.
  */
 
+
 $(function (){
 
     $('#evolution_conso').change(function(event) {
@@ -28,26 +29,30 @@ $(function (){
 
 function changeFuturConsoChart(rate)
 {
-    applyRate(globalArray['conso'],rate) ;
-    updateProdChart() ; 
+    applyRateLin(globalArray['conso'],rate) ;
+    prod_chart.series[6].update(globalArray['conso'],true) ;
     updateConsProdChart() ;
 }
 
 function updateConsProdChart()
 {
+    globalArray['prod'] = []  ;
     var array_diff = [];
     for (var i = 0 ; i < globalArray['years'].length ; i ++)
     {
-        array_diff[i] = (
-        (globalArray['prod_nucl'][i]+
-        globalArray['prod_hydro_acc'][i]+
-        globalArray['prod_hydro_fil'][i]+
+        globalArray['prod'][i] = (globalArray['prod_nucl'][i]+
+        globalArray['prod_hydro'][i]+
+        globalArray['prod_therm'][i]+
         globalArray['prod_solar'][i]+
         globalArray['prod_eol'][i]+
-        globalArray['prod_gaz_centr'][i])-
-        globalArray['conso'][i]) ;
+        globalArray['prod_gaz_centr'][i]) ;
+
+        array_diff[i] = (
+        globalArray['prod'][i]-
+        globalArray['conso'][i] ) ;
+
     }
 
     consoprod_chart.series[0].setData(array_diff,true) ;
-    
+
 }

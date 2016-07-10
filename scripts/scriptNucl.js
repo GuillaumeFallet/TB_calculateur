@@ -5,6 +5,9 @@ var currentTime = new Date();
 var year = currentTime.getFullYear() ;
 var prod_chart  ;
 var consoprod_chart ;
+var pollution_chart ;
+var price_chart ;
+
 var globalArray  ;
 
 $(function (){
@@ -40,7 +43,7 @@ $(function (){
         }
         $(this).prop("value",newValue) ;
         $('#stopdate_'+splitid[1]).prop("value",parseFloat($('#constructYear_'+splitid[1]).text()) + newValue) ;
-        calculateNuclAndGazProd() ;
+        calculateProd() ;
     });
 
     $('.input_stopdate').change(function(event){
@@ -64,25 +67,30 @@ $(function (){
         $(this).prop("value",newValue) ;
         $('#lifetime_'+splitid[1]).prop("value",parseFloat(newValue - parseFloat($('#constructYear_'+splitid[1]).text()))) ;
 
-        calculateNuclAndGazProd() ;
+        calculateProd() ;
 
     });
 
 
-    globalArray = new Array() ;
+    globalArray = [] ;
     globalArray['years'] = years ;
     globalArray['prod_nucl'] = prod_nucl ;
-    globalArray['prod_hydro_acc'] =  prod_hydro_acc ;
-    globalArray['prod_hydro_fil'] = prod_hydro_fil ;
+    globalArray['prod_hydro'] =  prod_hydro ;
+    globalArray['prod_therm'] = prod_therm ;
     globalArray['prod_solar'] = prod_solar ;
     globalArray['prod_eol'] = prod_eol ;
     globalArray['prod_gaz_centr'] = prod_gaz_centr ;
     globalArray['conso'] = conso ;
 
     Drawcharts() ;
-    calculateNuclAndGazProd() ;
-    calculateProd() ;
     changeFuturConsoChart(0) ;
+    calculateProd() ;
+
+    pollution_chart.renderer.button('Tonnes',700,75, switchChartPoll("total")).add()
+    pollution_chart.renderer.button('g / kWh ',600,75, switchChartPoll("s")).add()
+
+    price_chart.renderer.button('Millions de CHF',700,75, switchChartPoll("total")).add()
+    price_chart.renderer.button('centimes / kWh',600,75, switchChartPoll("total")).add()
 }) ;
 
 function errorInput(input)
@@ -145,8 +153,7 @@ function calculateNuclAndGazProd()
         }
     });
 
-    updateProdChart() ;
-    updateConsProdChart() ;
+
 
 }
 
@@ -200,6 +207,24 @@ function Drawcharts() {
                 marker: {
                     enabled: false
                 },
+                name: 'Nucléaire',
+                color : '#D7DF01',
+                data: globalArray['prod_nucl'],
+                stacking: 'normal'
+            },{
+                marker: {
+                    enabled: false
+                },
+                name: 'Hydraulique',
+                data: globalArray['prod_hydro'],
+                symbol: 'circle',
+                color: '#0033cc',
+                stacking: 'normal'
+            },
+            {
+                marker: {
+                    enabled: false
+                },
                 name: 'Solaire',
                 data: globalArray['prod_solar'],
                 symbol: 'circle',
@@ -214,31 +239,27 @@ function Drawcharts() {
                 symbol: 'circle',
                 color: '#00ff00',
                 stacking: 'normal'
-            }, {
-                marker: {
-                    enabled: false
-                },
-                name: 'Hydraulique',
-                data: globalArray['prod_hydro_acc'],
-                symbol: 'circle',
-                color: '#0033cc',
-                stacking: 'normal'
-            },{
+            }
+            ,{
                 marker: {
                     enabled: false
                 },
                 name: 'Gaz',
                 data: globalArray['prod_gaz_centr'],
+                symbol: 'circle',
+                color: '#8888A2',
                 stacking: 'normal'
-            }, {
+            },{
                 marker: {
                     enabled: false
                 },
-                name: 'Nucléaire',
-                color : '#D7DF01',
-                data: globalArray['prod_nucl'],
+                name: 'Géo-thermique',
+                data: globalArray['prod_therm'],
+                symbol: 'circle',
+                color: '#821F0A',
                 stacking: 'normal'
-            }, {
+            },
+            {
                 marker: {
                     enabled: false
                 },
