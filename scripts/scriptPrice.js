@@ -117,6 +117,8 @@ function calculatePrice()
     var max = 0 ;
     var min = 100000 ;
     var total = 0 ;
+    var yearMax = 0 ;
+    var yearMin = 0 ;
 
     for (var i = year; i <= 2050; i++) {
         //console.log(mixArray['prod_hydro'][indexYear]) ;
@@ -132,13 +134,16 @@ function calculatePrice()
             )/100 ;
 
         weightedMean = Math.round(weightedMean*100)/100 ;
+
         if(weightedMean>max)
         {
             max = weightedMean ;
+            yearMax = i ;
         }
         if (weightedMean<min)
         {
             min = weightedMean ;
+            yearMin = i ;
         }
         total = total + weightedMean ;
 
@@ -147,8 +152,8 @@ function calculatePrice()
 
     var avg = total/(2050-year+1) ;
     avg = Math.round(avg*100)/100 ;
-    $('#label_elec_min').html(min) ;
-    $('#label_elec_max').html(max) ;
+    $('#label_elec_min').html(min+" ( année : "+yearMin+" )") ;
+    $('#label_elec_max').html(max+" ( année : "+yearMax+" )") ;
     $('#label_elec_avg').html(avg) ;
     price_chart.series[0].setData(priceArray,true) ;
 
@@ -162,6 +167,8 @@ function calculatePollution()
     var max = 0 ;
     var min = 100000 ;
     var total = 0 ;
+    var yearMax = 0 ;
+    var yearMin = 0 ;
 
     for (var i = year; i <= 2050; i++) {
         var indexYear = globalArray['years'].indexOf(i) ;
@@ -177,10 +184,12 @@ function calculatePollution()
         if(weightedMean>max)
         {
             max = weightedMean ;
+            yearMax = i ;
         }
         if (weightedMean<min)
         {
             min = weightedMean ;
+            yearMin = i ;
         }
         total = total + weightedMean ;
         pollutionArray.push(weightedMean) ;
@@ -189,8 +198,8 @@ function calculatePollution()
 
     var avg = total/(2050-year+1) ;
     avg = Math.round(avg*100)/100 ;
-    $('#label_poll_min').html(min) ;
-    $('#label_poll_max').html(max) ;
+    $('#label_poll_min').html(min+" ( année : "+yearMin+" )") ;
+    $('#label_poll_max').html(max+" ( année : "+yearMax+" )") ;
     $('#label_poll_avg').html(avg) ;
 
     pollution_chart.series[0].setData(pollutionArray,true) ;
