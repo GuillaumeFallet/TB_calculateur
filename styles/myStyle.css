@@ -9,8 +9,19 @@
     display: table-row ;
 }
 
-.highlightYellow {
-    background-color: #FFFF88;
+#commandBoard {
+     width:1200px;
+     padding:10px;
+     float: left;
+     background-color: #ffffff;
+ }
+#menu {
+    width:200px;
+    padding:10px;
+    background-color: #ffffff;
+}
+#backgroundIndex {
+
 }
 
 .highlight {

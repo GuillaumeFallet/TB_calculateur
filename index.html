@@ -21,183 +21,195 @@
     <script type="text/javascript" src="scripts/scriptPowerhouse.js"></script>
 </head>
 <body>
+<div id ="backgroundIndex">
+    <img src="documents/images/logoHES-IT.PNG">
+    <img src="documents/images/logoHES.PNG" style="float: right;">
+    <div class="container-fluid" id="commandBoard">
+        <div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_nuclear_table"> [+/-] Fermeture des centrales nucléaires </button>
+            <table id="id_nuclear_table" class="table table-hover collapse" >
+                <thead>
+                <tr id="rowNucl">
+                    <th>Centrale nucléaire</th>
+                    <th>Année de construction</th>
+                    <th>Puissance max. (MW)</th>
+                    <th>Durée de vie</th>
+                    <th>Date d'arrêt</th>
+                    <th>%</th>
+                    <th>Production par année (GWh)</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_div_new_centrales"> [+/-] Construction de nouvelles grandes centrales </button>
+            <div id="id_div_new_centrales" class="collapse">
+                <button id="newCentralButton" class="btn btn-default">Nouvelle centrale</button>
+                <table id="id_new_centrales_table" class="table table-hover" >
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date de mise en service</th>
+                        <th>Durée de vie</th>
+                        <th>Puissance (MW)</th>
+                        <th>Heures de fonctionnement par année</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="rowToClone" class="hiddenRow">
+                        <td id="newType">
+                            <select class ="changeNewType">
+                                <option value ="none" selected disabled >Choisissez le type de la nouvelle centrale</option>
+                                <option value="nuclear" >Centrale nucléaire</option>
+                                <option value="gaz">Centrale à gaz</option>
+                            </select>
+                        </td>
+                        <td id="newDate"><input class ="changeNewPlantParam" type="number" readonly ></td>
+                        <td id="newLifetime"><input class ="changeNewPlantParam" type="number" readonly></td>
+                        <td id="newPower"><input class ="changeNewPlantParam" type="number" step="50" readonly></td>
+                        <td id="newUptime"><input class ="changeNewPlantParam"type="number" step="100" readonly></td>
+                        <td id="deletePlant"><button class="deletePlantButton">Effacer</button></td>
+                    </tr>
 
-<div class="container-fluid">
-    <a href="#id_nuclear_table" class="btn btn-info" data-toggle="collapse"> [+/-] Fermeture des centrales nucléaires </a>
-    <table id="id_nuclear_table" class="table table-hover collapse" >
-        <thead>
-        <tr id="rowNucl">
-            <th>Centrale nucléaire</th>
-            <th>Année de construction</th>
-            <th>Puissance max. (MW)</th>
-            <th>Durée de vie</th>
-            <th>Date d'arrêt</th>
-            <th>%</th>
-            <th>Production par année (GWh)</th>
-        </tr>
-        </thead>
-    </table>
-    <br>
-    <a href="#id_new_centrales_table" class="btn btn-info" data-toggle="collapse"> [+/-] Construction de nouvelles grandes centrales </a>
-    <button id="newCentralButton">Nouvelle centrale</button>
-    <table id="id_new_centrales_table" class="table table-hover collapse" >
-        <thead>
-        <tr>
-            <th>Type</th>
-            <th>Date de mise en service</th>
-            <th>Durée de vie</th>
-            <th>Puissance (MW)</th>
-            <th>Heures de fonctionnement par année</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr id="rowToClone" class="hiddenRow">
-            <td id="newType">
-                <select class ="changeNewType">
-                    <option value ="none" selected disabled >Choisissez le type de la nouvelle centrale</option>
-                    <option value="nuclear" >Centrale nucléaire</option>
-                    <option value="gaz">Centrale à gaz</option>
-                </select>
-            </td>
-            <td id="newDate"><input class ="changeNewPlantParam" type="number" readonly ></td>
-            <td id="newLifetime"><input class ="changeNewPlantParam" type="number" readonly></td>
-            <td id="newPower"><input class ="changeNewPlantParam" type="number" step="50" readonly></td>
-            <td id="newUptime"><input class ="changeNewPlantParam"type="number" step="100" readonly></td>
-            <td id="deletePlant"><button class="deletePlantButton">Effacer</button></td>
-        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        </tbody>
-    </table>
-    <br>
-    <a href="#id_prod_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la production </a>
-    <table id="id_prod_evolution_table" class="table table-hover collapse" >
-        <thead>
-        <tr>
-            <th>Type</th>
-            <th>Objectif 2050</th>
+        <div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_prod_evolution_table"> [+/-] Taux de progression de la production </button>
+            <table id="id_prod_evolution_table" class="table table-hover collapse" >
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Objectif 2050</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Hydraulique</td>
-            <td><input size="1" type="range" id="evolution_hydro_goal" value="0"> TWh</td>
-        </tr>
-        <tr>
-            <td>Solaire</td>
-            <td><input size="1" type="range" id="evolution_solar_goal" value="0"> TWh</td>
-        </tr>
-        <tr>
-            <td>Eolien</td>
-            <td><input size="1" type="range" id="evolution_eolien_goal" value="0"> TWh</td>
-        </tr>
-        <tr>
-            <td>Géothermie</td>
-            <td><input size="1" type="range" id="evolution_geoth_goal" value="0"> TWh</td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <a href="#id_conso_evolution_table" class="btn btn-info" data-toggle="collapse"> [+/-] Taux de progression de la consommation  </a>
-    <table id="id_conso_evolution_table" class="table table-hover collapse" >
-        <tbody>
-        <tr>
-            <td>Taux de progression de la consommation</td>
-            <td><input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
-            <td><input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <a href="#id_price_table" class="btn btn-info" data-toggle="collapse"> [+/-] Prix MWh </a>
-    <table id="id_price_table" class="table table-hover collapse" >
-        <thead>
-        <tr>
-            <th>Type</th>
-            <th>Prix</th>
-            <th>Progression</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Hydraulique</td>
+                    <td><input size="1" type="range" id="evolution_hydro_goal" value="0"> TWh</td>
+                </tr>
+                <tr>
+                    <td>Solaire</td>
+                    <td><input size="1" type="range" id="evolution_solar_goal" value="0"> TWh</td>
+                </tr>
+                <tr>
+                    <td>Eolien</td>
+                    <td><input size="1" type="range" id="evolution_eolien_goal" value="0"> TWh</td>
+                </tr>
+                <tr>
+                    <td>Géothermie</td>
+                    <td><input size="1" type="range" id="evolution_geoth_goal" value="0"> TWh</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_conso_evolution_table"> [+/-] Taux de progression de la consommation  </button>
+            <table id="id_conso_evolution_table" class="table table-hover collapse" >
+                <tbody>
+                <tr>
+                    <td>Taux de progression de la consommation</td>
+                    <td><input size="1" type="number" step="0.1" id="evolution_conso" value="0"> %</td>
+                    <td><input size="1" type="number" id="evolution_conso_goal" value="0"> TWh</td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_price_table"> [+/-] Prix </button>
+                <table id="id_price_table" class="table table-hover collapse" >
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Prix</th>
+                        <th>Progression</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Nucléaire</td>
-            <td><input size="1" type="number"  step="0.5" id="price_nuclear"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_nuclear_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Hydroélectricité</td>
-            <td><input size="1" type="number" step="0.5" id="price_hydro"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Solaire</td>
-            <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_solar_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Eolien</td>
-            <td><input size="1" type="number" step="0.5" id="price_eolien"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_eolien_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Centrale à gaz</td>
-            <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
-            <td><input size="1" type="number" type="number" id="price_gaz_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Géo-thermie</td>
-            <td><input size="1" type="number" type="number" step="0.5" id="price_geotherm"> ct./kWh</td>
-            <td><input size="1" type="number" type="number" id="price_geotherm_evolution" value="0"> %</td>
-        </tr>
-        <tr>
-            <td>Importations</td>
-            <td><input size="1" type="number" id="price_import"> ct./kWh</td>
-            <td><input size="1" type="number" id="price_import_evolution" value="0"> %</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Nucléaire</td>
+                        <td><input size="1" type="number"  step="0.5" id="price_nuclear"> ct./kWh</td>
+                        <td><input size="1" type="number" id="price_nuclear_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Hydroélectricité</td>
+                        <td><input size="1" type="number" step="0.5" id="price_hydro"> ct./kWh</td>
+                        <td><input size="1" type="number" id="price_hydro_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Solaire</td>
+                        <td><input size="1" type="number" step="0.5" id="price_solar"> ct./kWh</td>
+                        <td><input size="1" type="number" id="price_solar_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Eolien</td>
+                        <td><input size="1" type="number" step="0.5" id="price_eolien"> ct./kWh</td>
+                        <td><input size="1" type="number" id="price_eolien_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Centrale à gaz</td>
+                        <td><input size="1" type="number" type="number" step="0.5" id="price_gaz"> ct./kWh</td>
+                        <td><input size="1" type="number" type="number" id="price_gaz_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Géo-thermie</td>
+                        <td><input size="1" type="number" type="number" step="0.5" id="price_geotherm"> ct./kWh</td>
+                        <td><input size="1" type="number" type="number" id="price_geotherm_evolution" value="0"> %</td>
+                    </tr>
+                    <tr>
+                        <td>Importations</td>
+                        <td><input size="1" type="number" id="price_import"> ct./kWh</td>
+                        <td><input size="1" type="number" id="price_import_evolution" value="0"> %</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<div id="container_nucl_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
-<div id="container_cons_prod_chart" style="width: 800px; display: inline-block; margin: 0 auto"></div>
-<div id="container_price_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
-<div id="container_pollution_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+            <div id="container_nucl_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+            <div id="container_cons_prod_chart" style="width: 800px; display: inline-block; margin: 0 auto"></div>
+            <div id="container_price_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
+            <div id="container_pollution_chart" style=" width: 800px; display: inline-block; margin: 0 auto"></div>
 
-<br>
+            <br>
 
 
-<div>
-    <table  class="table table-hover">
-        <tr>
-            <th>Prix de l'électricité minimum (en ct./kWh)</th>
-            <td id="label_elec_min"></td>
-        </tr>
-        <tr>
-            <th>Prix de l'électricité maximum (en ct./kWh)</th>
-            <td id="label_elec_max"></td>
-        </tr>
-        <tr>
-            <th>Prix de l'électricité moyen (en ct./kWh)</th>
-            <td id="label_elec_avg"></td>
-        </tr>
-    </table>
+            <div>
+                <table  class="table table-hover">
+                    <tr>
+                        <th>Prix de l'électricité minimum (en ct./kWh)</th>
+                        <td id="label_elec_min"></td>
+                    </tr>
+                    <tr>
+                        <th>Prix de l'électricité maximum (en ct./kWh)</th>
+                        <td id="label_elec_max"></td>
+                    </tr>
+                    <tr>
+                        <th>Prix de l'électricité moyen (en ct./kWh)</th>
+                        <td id="label_elec_avg"></td>
+                    </tr>
+                </table>
 
-    <table class="table table-hover">
+                <table class="table table-hover">
 
-        <tr>
-            <th>Émissions de CO2 minimum (en g de CO2/kWh)</th>
-            <td id="label_poll_min"></td>
-        </tr>
-            <th>Émissions de CO2 maximum (en g de CO2/kWh)</th>
-            <td id="label_poll_max"></td>
-        </tr>
-        <tr>
-            <th>Émissions de CO2 moyennes (en g de CO2/kWh)</th>
-            <td id="label_poll_avg"></td>
-        </tr>
+                    <tr>
+                        <th>Émissions de CO2 minimum (en g de CO2/kWh)</th>
+                        <td id="label_poll_min"></td>
+                    </tr>
+                    <th>Émissions de CO2 maximum (en g de CO2/kWh)</th>
+                    <td id="label_poll_max"></td>
+                    </tr>
+                    <tr>
+                        <th>Émissions de CO2 moyennes (en g de CO2/kWh)</th>
+                        <td id="label_poll_avg"></td>
+                    </tr>
 
-    </table>
-</div>
+                </table>
+            </div>
+
+            <img src="documents/images/logobottomHES.PNG">
+        </div>
 </body>
 </html>

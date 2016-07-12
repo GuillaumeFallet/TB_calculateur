@@ -8,6 +8,8 @@ var countNew = 0 ; // count the number of new centrals (used for the id's of the
 
 $(function () {
 
+    $('#newDate').find('input').attr('min',year) ;
+
     // event when the "nouvelle centrale" button is pressed
     $("#newCentralButton").click(function() {
        countNew = countNew + 1 ;
@@ -65,6 +67,17 @@ $(function () {
 
     // event when the user changes anything in the parameters of the new centrals
     $('body').on('change', '.changeNewPlantParam', function() {
+        var idRow = $(this).closest("tr").attr("id").split('_')[1];
+        if ($('#newDate_'+idRow).find('input').prop("value")<year)
+        {
+            $('#newDate_'+idRow).find('input').prop("value",year) ;
+            errorInput($(this)) ;
+        }
+        if ($('#newUptime_'+idRow).find('input').prop("value")>config.DEFAULT_MAX_HOURS)
+        {
+            $('#newUptime_'+idRow).find('input').prop("value",config.DEFAULT_MAX_HOURS) ;
+            errorInput($(this)) ;
+        }
         calculateProd() ;
     }) ;
 
