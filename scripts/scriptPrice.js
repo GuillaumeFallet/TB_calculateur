@@ -27,6 +27,38 @@ $(function () {
     $('[id^="price_"]').change(function() {
         calculatePrice() ;
     }) ;
+
+    $('#price_chart_modifier').change(function() {
+
+        var value = $(this).val() ;
+        if (value=="mchf")
+        {
+            $('#container_price_chart').css('display','none') ;
+            $('#container_priceTotal_chart').css('display','inline-block') ;
+        }
+        else if (value=="ctkhw")
+        {
+            $('#container_priceTotal_chart').css('display','none') ;
+            $('#container_price_chart').css('display','inline-block') ;
+
+        }
+
+    }) ;
+    $('#pollution_chart_modifier').change(function() {
+        var value = $(this).val() ;
+        if (value=="tons")
+        {
+            $('#container_pollution_chart').css('display','none') ;
+            $('#container_pollutionTotal_chart').css('display','inline-block') ;
+        }
+        else if (value=="gkwh")
+        {
+            $('#container_pollutionTotal_chart').css('display','none') ;
+            $('#container_pollution_chart').css('display','inline-block') ;
+
+        }
+
+    }) ;
 }) ;
 
 function calculateMix() {
@@ -72,6 +104,7 @@ function calculateMix() {
 function calculatePrice()
 {
     var priceArray = [] ;
+    var priceArrayTotal = [] ;
 
     var priceNucl = [] ;
     var priceNuclRate = $('#price_nuclear_evolution').val() ;
@@ -146,8 +179,8 @@ function calculatePrice()
             yearMin = i ;
         }
         total = total + weightedMean ;
-
         priceArray.push(weightedMean) ;
+        priceArrayTotal.push(Math.round(weightedMean*globalArray['conso'][indexYear]/100)/1000)
     }
 
     var avg = total/(2050-year+1) ;
@@ -156,14 +189,15 @@ function calculatePrice()
     $('#label_elec_max').html(max+" ( année : "+yearMax+" )") ;
     $('#label_elec_avg').html(avg) ;
     price_chart.series[0].setData(priceArray,true) ;
+    priceTotal_chart.series[0].setData(priceArrayTotal,true) ;
 
 
 }
 
 function calculatePollution()
 {
-    pollutionArray = [] ;
-    pollutionTotalArray = [] ;
+    var pollutionArray = [] ;
+    var pollutionTotalArray = [] ;
     var max = 0 ;
     var min = 100000 ;
     var total = 0 ;
@@ -193,7 +227,8 @@ function calculatePollution()
         }
         total = total + weightedMean ;
         pollutionArray.push(weightedMean) ;
-        pollutionTotalArray.push(weightedMean*globalArray['prod'][indexYear]/1000)
+        pollutionTotalArray.push(Math.round(weightedMean*globalArray['prod'][indexYear]/10)/100 )
+
     }
 
     var avg = total/(2050-year+1) ;
@@ -202,7 +237,10 @@ function calculatePollution()
     $('#label_poll_max').html(max+" ( année : "+yearMax+" )") ;
     $('#label_poll_avg').html(avg) ;
 
+
+
     pollution_chart.series[0].setData(pollutionArray,true) ;
+    pollutionTotal_chart.series[0].setData(pollutionTotalArray,true) ;
 }
 
 function switchChartPrice()

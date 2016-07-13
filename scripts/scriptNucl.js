@@ -86,11 +86,6 @@ $(function (){
     changeFuturConsoChart(0) ;
     calculateProd() ;
 
-    pollution_chart.renderer.button('Tonnes',700,75, switchChartPoll("total")).add()
-    pollution_chart.renderer.button('g / kWh ',600,75, switchChartPoll("s")).add()
-
-    price_chart.renderer.button('Millions de CHF',700,75, switchChartPoll("total")).add()
-    price_chart.renderer.button('centimes / kWh',600,75, switchChartPoll("total")).add()
 }) ;
 
 function errorInput(input)
@@ -349,6 +344,43 @@ function Drawcharts() {
         }]
     });
 
+    priceTotal_chart  = new Highcharts.Chart({
+        chart: {
+            renderTo : container_priceTotal_chart
+        },
+        title: {
+            text: 'Évolution du prix de l\x27électricité'
+        },
+        xAxis: {
+            categories: futurYears,
+            text: 'Années',
+            plotLines: [{
+                color: 'black', // Color value
+                value: year-1960, // Value of where the line will appear
+                width: 3, // Width of the line
+                zIndex: 10
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Prix en millions de CHF'
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'black'
+            }]
+
+        },
+        series: [{
+            name: 'Prix de l\x27électricité',
+            data: [] ,
+            marker: {
+                enabled: false
+            }
+        }]
+    });
+
     pollution_chart  = new Highcharts.Chart({
         chart: {
             renderTo : container_pollution_chart
@@ -379,7 +411,44 @@ function Drawcharts() {
         },
         series: [{
             name: 'Émissions de CO2',
-            data: [] ,
+            data: [],
+            marker: {
+                enabled: false
+            }
+        }]
+    });
+
+    pollutionTotal_chart  = new Highcharts.Chart({
+        chart: {
+            renderTo : container_pollutionTotal_chart
+        },
+        title: {
+            text: 'Évolution des émissions de CO2'
+        },
+        xAxis: {
+            categories: futurYears,
+            text: 'Années',
+            plotLines: [{
+                color: 'black', // Color value
+                value: year-1960, // Value of where the line will appear
+                width: 3, // Width of the line
+                zIndex: 10
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Émissions de CO2 en tonnes de CO2'
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'black'
+            }]
+
+        },
+        series: [{
+            name: 'Émissions de CO2',
+            data: [],
             marker: {
                 enabled: false
             }

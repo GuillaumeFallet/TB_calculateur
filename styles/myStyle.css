@@ -1,5 +1,6 @@
 .collapse.in {
-    display: inline-table;
+    display: table;
+    width: 100%;
 }
 .hiddenRow {
     display: none ;

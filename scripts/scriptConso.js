@@ -47,9 +47,9 @@ function updateConsProdChart()
         globalArray['prod_eol'][i]+
         globalArray['prod_gaz_centr'][i]) ;
 
-        array_diff[i] = (
-        globalArray['prod'][i]-
-        globalArray['conso'][i] ) ;
+        array_diff[i] = (Math.round(
+            (globalArray['prod'][i]-
+        globalArray['conso'][i])*10)/10) ;
 
     }
 
