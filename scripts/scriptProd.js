@@ -7,21 +7,22 @@ $(function () {
     $('#evolution_hydro_goal').attr({
         "max" : config.DEFAULT_HYDRO_MAX,
         "min" : config.DEFAULT_HYDRO_MIN,
-        "step" : 0.5
+        "step" : 0.1
     }) ;
     $('#evolution_solar_goal').attr({
         "max" : config.DEFAULT_SOLAR_MAX,
-        "min" : config.DEFAULT_SOLAR_MIN
+        "min" : config.DEFAULT_SOLAR_MIN,
+        "step" : 1
     }) ;
     $('#evolution_eolien_goal').attr({
         "max" : config.DEFAULT_EOL_MAX,
         "min" : config.DEFAULT_EOL_MIN,
-        "step" : 0.5
+        "step" : 0.1
     }) ;
     $('#evolution_geoth_goal').attr({
         "max" : config.DEFAULT_GEOTHERM_MAX,
         "min" : config.DEFAULT_GEOTHERM_MIN,
-        "step" : 0.5
+        "step" : 0.1
     }) ;
 
     $('[id^="evolution_"]').change(function() {

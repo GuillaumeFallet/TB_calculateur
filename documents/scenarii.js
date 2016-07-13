@@ -2,26 +2,19 @@
 /**
  * Created by Pydd on 13.07.2016.
  */
-var ProdScenariiArray = {
+var prodScenariiArray = [
+    {id : 0, hydro : 2.5, solar : 24, eol : 3.5, gaz : 0, text : 'Scénario de l\'AES - Voie d\'escalade'},
+    {id : 1, hydro : 2, solar : 19, eol : 3, gaz : 4, text : 'Scénario de l\'AES - Sentier alpin'},
+    {id : 2, hydro : 2.5, solar : 24, eol : 3.5, gaz : 0, text : 'Scénario 3'},
+    {id : 3, hydro : 2.5, solar : 24, eol : 3.5, gaz : 0, text : 'Scénario 4'},
+    {id : 4, hydro : 2.5, solar : 24, eol : 3.5, gaz : 0, text : 'Scénario 5'}
+] ;
 
-    scenario1 : {
-        name : 'AES - chemin de montagne',
-        hydro : 1,
-        eol : 2,
-    },
-    scenario2: {
-        name : 'AES - sentier alpin',
-        hydro : 1,
-        eol : 2,
-    },
-    scenario3: {
-        name : 'AES - voie d\'escalade',
-        hydro : 1,
-        eol : 2,
-    }
 
-} ;
 
-var ConsScenariiArray = {
 
-} ;
+var consScenariiArray = [
+    {id : 0, cons : -0.3, text : 'Consommation en légère baisse'},
+    {id : 1, cons : 0, text : 'Consommation stable'},
+    {id : 2, cons : 0.3, text : 'Consommation en légère hausse'}
+    ] ;

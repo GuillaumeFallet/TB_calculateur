@@ -9,9 +9,10 @@
     <script src="scripts/third-party/jquery.min.js"></script>
     <script src="scripts/third-party/bootstrap.min.js"></script>
     <script src="scripts/third-party/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="scripts/third-party/highchartsExport.js"></script>
     <script type="text/javascript" src="documents/data.js"></script>
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
+    <script type="text/javascript" src="documents/scenarii.js"></script>
     <script type="text/javascript" src="scripts/scriptCalcul.js"></script>
     <script type="text/javascript" src="scripts/configScript.js"></script>
     <script type="text/javascript" src="scripts/scriptPrice.js"></script>
@@ -19,10 +20,23 @@
     <script type="text/javascript" src="scripts/scriptProd.js"></script>
     <script type="text/javascript" src="scripts/scriptNucl.js"></script>
     <script type="text/javascript" src="scripts/scriptPowerhouse.js"></script>
+    <script type="text/javascript" src="scripts/scriptScenar.js"></script>
 </head>
 <body>
 <div id ="backgroundIndex" >
     <img src="documents/images/logoHEStop.PNG" width="100%">
+    <div class="jumbotron">
+        <h2>Calculateur d’impact pour la transition énergétique en Suisse</h2>
+        <p>Proposé et dirigé par : Arnaud Zufferey</p>
+        <p>D'après une idée de : Philipe Jacquod</p>
+        <p>Développé par : Guillaume Fallet</p>
+        <select id="selectProdScen" class="form-control" style=" width: 400px; float: left">
+            <option value ="none" selected disabled >Choisissez un scénario de production</option>
+        </select>
+        <select id="selectConsScen" class="form-control" style=" width: 400px">
+            <option value ="none" selected disabled >Choisissez un scénario de consommation</option>
+        </select>
+    </div>
     <div>
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_nuclear_table"> [+/-] Fermeture des centrales nucléaires </button>
         <table id="id_nuclear_table" class="table table-hover collapse" >
@@ -76,33 +90,45 @@
 
     <div>
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_prod_evolution_table"> [+/-] Taux de progression de la production </button>
-        <table id="id_prod_evolution_table" class="table table-hover collapse" >
-            <thead>
-            <tr>
-                <th>Type</th>
-                <th>Objectif 2050</th>
+        <div id="id_prod_evolution_table" class="collapse">
+            <div class="row">
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Hydraulique</td>
-                <td><input size="1" type="range" id="evolution_hydro_goal" value="0"> TWh</td>
-            </tr>
-            <tr>
-                <td>Solaire</td>
-                <td><input size="1" type="range" id="evolution_solar_goal" value="0"> TWh</td>
-            </tr>
-            <tr>
-                <td>Eolien</td>
-                <td><input size="1" type="range" id="evolution_eolien_goal" value="0"> TWh</td>
-            </tr>
-            <tr>
-                <td>Géothermie</td>
-                <td><input size="1" type="range" id="evolution_geoth_goal" value="0"> TWh</td>
-            </tr>
-            </tbody>
-        </table>
+                <div class="col-xs-6">
+                        <h4><label class="label label-primary" style="background-color: #0033cc"> Hydraulique </label></h4>
+                    <div class="range">
+                        <input type="range" id="evolution_hydro_goal" name="range" min="0" max="100" value="0" onchange="rangeHydro.value='+ '+value+' TWh'">
+                        <output style="background-color: #0033cc" id="rangeHydro">+ 0 TWh</output>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4><label class="label label-primary" style="background-color: #ff9933"> Solaire </label></h4>
+                    <div class="range">
+                        <input type="range" id="evolution_solar_goal" name="range" min="0" max="100" value="0" onchange="rangeSolar.value='+ '+value+' TWh'">
+                        <output style="background-color: #ff9933" id="rangeSolar">+ 0 TWh</output>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4><label class="label label-primary" style="background-color: #5cb85c"> Eolien </label></h4>
+                    <div class="range">
+                        <input type="range" id="evolution_eolien_goal" name="range" min="0" max="100" value="0" onchange="rangeEol.value='+ '+value+' TWh'">
+                        <output style="background-color: #5cb85c" id="rangeEol">+ 0 TWh</output>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4><label class="label label-primary" style="background-color: #821F0A"> Géothermie </label></h4>
+                    <div class="range">
+                        <input type="range" id="evolution_geoth_goal" name="range" min="0" max="100" value="0" onchange="rangeGeoth.value='+ '+value+' TWh'">
+                        <output style="background-color: #821F0A" id="rangeGeoth">+ 0 TWh</output>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div>
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#id_conso_evolution_table"> [+/-] Taux de progression de la consommation  </button>
