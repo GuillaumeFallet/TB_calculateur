@@ -16,10 +16,179 @@
         <p>Développé par : Guillaume Fallet</p>
         <a class="btn btn-link" role="button" href="index.html">Retour sur le calculateur</a>
     </div>
+    <h1><mark>Informations</mark></h1>
+    <br>
+    <p class="intro"> Ce calculateur a été développé dans le cadre du travail de bachelor de Guillaume Fallet (2016) intitulé "Calculateur d’impact pour la transition énergétique" au cours de ses études à la HES-SO Valais/Wallis en filière Informatique de gestion".
+        <br> Il a débuté le 2 mai 2016 et s'est terminé le 25 août 2016.
+        Le travail de l'étudiant a été suivi et dirigé par le prof. Arnaud Zufferey de la HES-SO. L’idée de ce travail de bachelor est venue du prof. Philippe Jacquod de l’ISI. C’est lui qui a fourni le contenu scientifique.
+        <br>
+        <br>
+        Ce calculateur a pour but de visualiser la transition énergétique Suisse sous forme de graphiques. Il sert à savoir s'il est possible oui ou non de viser 100% d'énergie renouvelable d'ici 2050. Devra-t-on avoir recours à des centrales à gaz ou pas ?
+        Quels scénarios de consommations sont envisageables ?
+        <br>
+        <br>N'hésitez pas à utiliser ce calculateur afin de vous aider à trouver des réponses.
+    </p>
+    <br>
+    <h1><mark>Aide</mark></h1>
+    <br>
+    <h4>Voici la liste des fonctionnalités avec leur utilisation ainsi que la source des données : </h4>
+    <br>
+    <ul class="list-group">
+        <li class="list-group-item"><h4><strong>Fermeture des centrales nucléaires</strong></h4>
+            Dans cette partie, vous avez une vue d'ensemble de toutes les centrales nucléaires actuellement en service en Suisse.
+            <br>Vous pouvez choisir la date de fermeture de deux façon. La première consiste à changer directement la date de fermeture. La deuxième est de changer la durée de vie,
+            la date de fermeture changera directement.
+            <br> Il est impossible d'entrer des paramètres qui impliqueraient une fermeture antérieure à l'année en cours ou une durée de vie supérieure à 100 ans.
+            <br> Toute modification effectuée entraine directement une mise à jour de tous les graphiques.
+            <br>
+            <br><strong> Source des données </strong>
+            <br> Les données concernant centrales nucléaires sont tirées du site
+            <a href="https://www.kernenergie.ch/fr/les-centrales-nucleaires-suisses-_content---1--1042.html" target="_blank">www.kernenergie.ch</a>.
+            <br> Leur production moyenne est calculée avec une règle de 3 en fonction de leur puissance, de la puissance nucléaire totale et de la production nucléaire totale disponible sur
+            <a href="http://www.bfe.admin.ch/themen/00511/index.html?lang=fr" target="_blank">www.bfe.admin.ch/</a>
+        </li>
+        <li class="list-group-item"><h4><strong>Construction de nouvelles centrales </strong></h4>
+            Vous pouvez choisir de créer des nouvelles centrales (à gaz ou nucléaires).
+            Il suffit de cliquer sur le bouton "nouvelle centrale". Il faut ensuite choisir le type.
+            <br> Des valeurs par défaut sont automatiquement remplies dans tous les champs et tous les graphiques se mettent à jour automatiquement.
+            <br>
+            <br><strong> Source des données </strong>
+            <br> Le temps de construction par défaut d'une centrale nucléaire est de 11 ans. Tiré du forum nucléaire Suisse
+            <a href="http://www.nuklearforum.ch/fr/actualites/e-bulletin/combien-de-temps-pour-construire-une-centrale-nucleaire-en-suisse" target="_blank">www.nuklearforum.ch</a>
+            <br> La puissance (1300MW) et le nombre d'heures de fonctionnement par année (7000h) par défaut sont tous les deux tirés du site
+            <a href="https://www.kernenergie.ch/fr/les-centrales-nucleaires-suisses-_content---1--1042.html" target="_blank">www.kernenergie.ch</a>.
+            <br>
+            <br> Le temps de construction par défaut d'une centrale à gaz est de 4 ans. La puissance (500MW) et le nombre d'heures de fonctionnement par année (4000h).
+            <br> Ces informations sont extraites de l'article suivant :
+            <a href="http://www.usinenouvelle.com/article/edf-et-ge-energy-construisent-ensemble-une-centrale-a-gaz-en-france.N164589" target="_blank">EDF et GE Energy construisent ensemble une centrale à gaz en France</a>
+            (www.usinenouvelle.com, 2011).
 
-    <h1>Utilisation</h1>
-    <p>Cet outil propose diverses fonctionnalités. Voici la liste</p>
+        </li>
+        <li class="list-group-item"><h4><strong>Taux de progression de la production</strong></h4>
+            Vous pouvez également modifier l'évolution de la production des différentes électrictés renouvelables. Le curseur indique quel sera le gain entre ce qui est produit aujourd'hui et ce qui sera produit
+            en 2050.
+            <br> Tous les changements faits sont automatiquement reportés sur les graphiques.
+            <br>
+            <br><strong> Source des données </strong>
+            <br>Les données du futur sont calculées à partir des entrées que vous choisissez. Les données du passé sont tirées de
+            <a href="http://www.bfs.admin.ch/bfs/portal/fr/index/themen/08/02/blank/key/elektrizitaetserzeugung.html" target="_blank">www.bfs.admin.ch</a>.
+            Il s'agit du site officiel de l'Office fédéral de l'énergie (OFEN). De nombreux fichiers Excel y sont présents et contiennent les informations utilisées.
+            <br>
+        </li>
+        <li class="list-group-item"><h4><strong>Taux de progression de la consommation</strong></h4>
+            Il est possible de modifier l'évolution de la consommation d'électricité. Il y a pour cela deux façons de procéder. La première consiste à entrer un pourcentage qui définira le taux d'augmentation
+            par année. La deuxième est d'entrer directement une valeur qui représente un objectif pour 2050.
+            <br> Chaque modification d'un de ces deux paramètres est reportée sur les deux graphiques où la consommation est représentée.
+            <br>
+            <br><strong> Source des données </strong>
+            <br> Les données utilisées pour l'historique de la consommation proviennent encore une fois de l'OFEN dans
+            <a href="http://www.bfe.admin.ch/themen/00526/00541/00542/00630/index.html?lang=fr&dossier_id=00765" target="_blank">leur rapport annuel de l'année 2015</a>.
+            <br>
+        </li>
+        <li class="list-group-item"><h4><strong>Prix</strong></h4>
+            Dans cette catégorie, il est possible de modifier deux paramètres.
+            <br> La première est le prix actuel de chaque source d'électricité. C'est un prix en centimes par kWh.
+            <br> La deuxième permet de modifier l'évolution du prix jusqu'en 2050. Il est par exemple possible de définir 10 ct./kWh pour l'électricité solaire puis de décider que cela va baisser de
+            10% par année.
+            <br> Toutes les modifications sont automatiquement reportées sur le graphique du prix.
+            <br>
+            <br><strong> Source des données </strong>
+            <br> Les données utilisées pour définir des prix par défaut de chacun des types d'électricité ont été trouvées sur le site de l'Association des entreprises électriques suisses dont voici le lien
+            <a href=" http://www.strom.ch/fr/energie/faits-relatifs-a-lenergie/production-et-mix-energetique.html" target="_blank">www.strom.ch</a>.
+        </li>
+        <li class="list-group-item"><h4><strong>Graphique de la production</strong></h4>
+            Ce graphique indique pour l'évolution de chaque source d'électricité en Suisse depuis l'année 1960 jusqu'en 2015.
+            <br> La suite est le résultat d'un calcul en se basant sur la fermeture des centrales nucléaires et sur le fait que les autres sources ne vont pas évoluer (par défaut).
+            <br>L'évolution de la consommation est représentée par un trait rouge. Pour la période 2015 - 2050, la consommation est par défaut stable.
+        </li>
+        <li class="list-group-item"><h4><strong>Graphique de la différence de production et consommation</strong></h4>
+            Ce deuxième graphique est une deuxième façon de visualiser les données du premier.
+            <br> Il représente la différence entre le total d'électricité produite et celle consommée. Cela signifie que tant que le trait est au dessus de zéro, la production est supérieure
+            à la consommation et l'inverse quand le trait est en dessous.
+            <br>
+        </li>
+        <li class="list-group-item"><h4><strong>Graphique du prix</strong></h4>
+            Ce graphique représente l'évolution du prix de l'électricité entre 2015 et 2050. Il résulte de la moyenne pondérée du prix des différentes sources d'électricité pour chaque année.
+            <br>
+        </li>
+        <li class="list-group-item"><h4><strong>Graphique de des émissions de CO2</strong></h4>
+            Ce graphique représente l'évolution des émissions de CO2 liées à la production de l'électricité entre 2015 et 2050. Il résulte de la moyenne pondérée des émissions individuelles
+            des différentes sources d'électricité pour chaque année.
+            <br>
+            <br><strong> Source des données </strong>
+            <br>
+            Les données utilisées sont tirées du rapport de Eco-Bau intitulé "Données des écobilans dans la construction" dont voici le lien
+            <a href="http://www.eco-bau.ch/resources/uploads/KBOB_EMPFEHLUNg2009_1(1).pdf" target="_blank">Données des écobilans dans la construction</a>.
+            <br> Elles sont les suivantes :
+            <ul>
+                <li>
+                    Électricité de provenance nucléaire : 23.6 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité de provenance hydraulique : 12.6 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité de provenance solaire : 95 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité de provenance éolienne : 26 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité de provenance géothermique : 31 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité en provenance de centrales à gaz : 670 g de CO2 / kWh.
+                </li>
+                <li>
+                    Électricité en provenance de centrales à charbon : 1238 g de CO2 / kWh.
+                </li>
+            </ul>
+            <br>
+        </li>
+        <li class="list-group-item"><h4><strong>Choix de scénarios</strong></h4>
+            Il est possible de sélectionner un scénario pré-défini pour la production et la consommation. Ce choix est présenté en haut de la page sous forme de deux listes déroulantes.
+            <br>
+            <br>
+            Le calculateur propose trois scénarios de production différents dont voici la liste :
+            <br>
+            <ul>
+                <li>
+                    Scénario de l'AES - Voie d'escalade
+                    (source : <a href="http://www.strom.ch/fileadmin/user_upload/Dokumente_Bilder_neu/010_Downloads/Stromzukunft/AES_Scenarios-app-electrique-futur_Synthese_2012.pdf" target="_blank">AES - scénarios pour l’approvisionnement électrique du futur - synthèse du rapport</a>).
+                </li>
+                <li>
+                    Scénario de l'OFEN - Stratégie énergétique 2050
+                    (source : <a href="http://www.bfe.admin.ch/themen/00526/00527/06431/index.html?lang=fr&dossier_id=06420" target="_blank">OFEN - Perspectives énergétiques 2050 - résumé</a>).
 
+                </li>
+                <li>
+                    Scénario de Greenpeace
+                    (source : <a href="http://www.greenpeace.org/switzerland/fr/themes/energies/energies-renouvelables/" target="_blank">Greenpeace.org - Énergies renouvelables - L'avenir à portée de main</a>).
+                </li>
+            </ul>
+            <br>
+            Le calculateur propose également trois scénarios de consommation différents dont voici la liste :
+            <br>
+            <ul>
+                <li>
+                    Consommation en légère baisse. <kbd>-0.3%</kbd> par année
+                <li>
+                    Consommation stable
+                </li>
+                <li>
+                    Consommation en légère hausse. <kbd>0.3%</kbd> par année
+                </li>
+            </ul>
+        </li>
+        <li class="list-group-item"><h4><strong>Export des données</strong></h4>
+            Le calculateur offre la possibilités les données de la façon suivante :
+            En bas de la page se trouve un bouton ("Exporter les données"). Une fois cliqué, un champ de text apparaît avec toutes les données de production et de consommation.
+            <br> Il est possible d'automatiquement copier ces données dans le presse-papier en appuyant sur le bouton "Copier les données dans le presse-papier".
+            <br>Il est ensuite possible de coller ces données dans Excel par exemple afin de les réutiliser.
+
+
+        </li>
+    </ul>
     <br>
     <img src="documents/images/logobottomHES.PNG" width="100%">
 </div>
