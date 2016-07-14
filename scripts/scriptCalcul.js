@@ -2,6 +2,7 @@
  * Created by Guillaume on 04.07.2016.
  */
 
+// function  to calculate the rate of progression given the goal
 function findRate(startValue,goal)
 {
     goal = startValue + goal ;
@@ -11,6 +12,7 @@ function findRate(startValue,goal)
     return rate ;
 }
 
+// function to apply a linear rate to an array, starting at year 2015.
 function applyRateLin(array,rate)
 {
     var today = array[globalArray['years'].indexOf(year-2)];
@@ -21,14 +23,14 @@ function applyRateLin(array,rate)
         j ++ ;
     }
 }
-
+// function to
 function applyRateExp(array,rate)
 {
     for(var i = year-1 ; i <= 2050 ; i ++) {
         array[globalArray['years'].indexOf(i)] = Math.round(array[globalArray['years'].indexOf(i - 1)] * (1 + rate / 100));
     }
 }
-
+// function to apply an exponential rate to an array, starting at year 2015
 function applyGoal(array,goal)
 {
     var diffYear = 2050-year+1;

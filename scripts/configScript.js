@@ -1,7 +1,7 @@
 /**
  * Created by Guillaume on 26.06.2016.
  */
-
+// config file where default values are stored
 var config = {
 
     DEFAULT_EXP_METHOD : false,
@@ -21,8 +21,8 @@ var config = {
     DEFAULT_HYDRO_PRICE :  6,
     DEFAULT_EOL_PRICE :  7.5,
     DEFAULT_SOLAR_PRICE :  9,
-    DEFAULT_GEOTHERM_PRICE :  10, // A CHANGER
-    DEFAULT_IMPORT_PRICE :  7, // ?
+    DEFAULT_GEOTHERM_PRICE :  10,
+    DEFAULT_IMPORT_PRICE :  7,
 
     DEFAULT_NUCL_POLLUTION :  23.6,
     DEFAULT_GAZ_POLLUTION :  670,
@@ -31,8 +31,7 @@ var config = {
     DEFAULT_SOLAR_POLLUTION :  95,
     DEFAULT_GEOTHERM_POLLUTION : 31,
     DEFAULT_COAL_POLLUTION : 1238,
-    DEFAULT_IMPORT_POLLUTION :  100, // ?
-
+//    DEFAULT_IMPORT_POLLUTION :  100,
     DEFAULT_EOL_MIN : 0,
     DEFAULT_EOL_MAX : 4,
     DEFAULT_HYDRO_MIN : 0,

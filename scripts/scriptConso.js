@@ -5,6 +5,7 @@
 
 $(function (){
 
+    // event listener when the rate of consumption is changed
     $('#evolution_conso').change(function(event) {
         var conso_today = globalArray['conso'][globalArray['years'].indexOf(year-2)];
         var rate = $('#evolution_conso').prop("value");
@@ -15,6 +16,7 @@ $(function (){
 
     }) ;
 
+    // event listener when the goal of consumption is changed
     $('#evolution_conso_goal').change(function(event){
         var conso_today = globalArray['conso'][globalArray['years'].indexOf(year-2)];
         var goal =  parseInt($('#evolution_conso_goal').prop("value"))*1000 ;
@@ -26,7 +28,7 @@ $(function (){
     }) ;
 }) ;
 
-
+// function to modify the array containing the consumption and update the charts accordingly.
 function changeFuturConsoChart(rate)
 {
     applyRateLin(globalArray['conso'],rate) ;
@@ -34,6 +36,7 @@ function changeFuturConsoChart(rate)
     updateConsProdChart() ;
 }
 
+// function to update the consumption vs production chart (with calculs)
 function updateConsProdChart()
 {
     globalArray['prod'] = []  ;

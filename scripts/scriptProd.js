@@ -4,6 +4,7 @@
 
 $(function () {
 
+    // set max and min values for each inputs of the production, according what it's defined the config file (configScript.js)
     $('#evolution_hydro_goal').attr({
         "max" : config.DEFAULT_HYDRO_MAX,
         "min" : config.DEFAULT_HYDRO_MIN,
@@ -30,10 +31,9 @@ $(function () {
     }) ;
 }) ;
 
-
+// recalculate the production of reusable energies when the user changes an input, updating charts accordingly and recalculate the mix
 function calculateProd()
 {
-
     var hydro_goal = parseFloat($('#evolution_hydro_goal').prop("value")*1000) ;
     var solar_goal = parseFloat($('#evolution_solar_goal').prop("value")*1000) ;
     var eol_goal = parseFloat($('#evolution_eolien_goal').prop("value")*1000) ;

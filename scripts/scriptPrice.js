@@ -6,6 +6,7 @@ var pollutionTotalArray = [] ;
 
 $(function () {
 
+    // function declaration of the array containing the mix of energies
     mixArray = [];
     mixArray['years'] = years;
     mixArray['prod_nucl'] =  [];
@@ -61,8 +62,33 @@ $(function () {
     }) ;
 }) ;
 
+// function to calculate the mix of energies
 function calculateMix() {
 
+    for (var i = 1960; i <= 2050; i++) {
+
+        var indexYear = globalArray['years'].indexOf(i) ;
+        var totalYear = globalArray['prod_nucl'][indexYear] +
+            globalArray['prod_hydro'][indexYear] +
+            globalArray['prod_therm'][indexYear] +
+            globalArray['prod_solar'][indexYear] +
+            globalArray['prod_eol'][indexYear] +
+            globalArray['prod_gaz_centr'][indexYear] ;
+
+        mixArray['prod_nucl'][indexYear] = globalArray['prod_nucl'][indexYear] / totalYear * 100 ;
+        mixArray['prod_hydro'][indexYear] = globalArray['prod_hydro'][indexYear] / totalYear * 100 ;
+        mixArray['prod_therm'][indexYear] = globalArray['prod_therm'][indexYear] / totalYear * 100 ;
+        mixArray['prod_solar'][indexYear] = globalArray['prod_solar'][indexYear] / totalYear * 100 ;
+        mixArray['prod_eol'][indexYear] = globalArray['prod_eol'][indexYear] / totalYear * 100 ;
+        mixArray['prod_gaz_centr'][indexYear] = globalArray['prod_gaz_centr'][indexYear] / totalYear * 100 ;
+
+    }
+
+    // call the pollution method, ignoring the imported energy
+    calculatePollution() ;
+
+
+    // calculate the mix once more, this time using the imported energy
     for (var i = 1960; i <= 2050; i++) {
 
         var indexYear = globalArray['years'].indexOf(i) ;
@@ -85,8 +111,6 @@ function calculateMix() {
             mixArray['import'][indexYear] = 0 ;
         }
 
-       // console.log("années "+i+" import : ("+mixArray['import'][indexYear]+")%") ;
-
 
         mixArray['prod_nucl'][indexYear] = globalArray['prod_nucl'][indexYear] / totalYear * 100 ;
         mixArray['prod_hydro'][indexYear] = globalArray['prod_hydro'][indexYear] / totalYear * 100 ;
@@ -95,12 +119,14 @@ function calculateMix() {
         mixArray['prod_eol'][indexYear] = globalArray['prod_eol'][indexYear] / totalYear * 100 ;
         mixArray['prod_gaz_centr'][indexYear] = globalArray['prod_gaz_centr'][indexYear] / totalYear * 100 ;
 
-        // console.log("Années : "+mixArray['years'][indexYear]+" Total : "+totalYear+". Hydro Acc : "+globalArray['prod_hydro_acc'][indexYear]+" % : "+mixArray['prod_hydro_acc'][indexYear]) ;
     }
-
+    // call price method
     calculatePrice();
-    calculatePollution() ;
+
 }
+
+
+// calculate the price of the futur energy using the mix (with import)
 function calculatePrice()
 {
     var priceArray = [] ;
@@ -194,6 +220,7 @@ function calculatePrice()
 
 }
 
+// calculate the pollution of the futur energy using the mix (without import)
 function calculatePollution()
 {
     var pollutionArray = [] ;
@@ -241,18 +268,4 @@ function calculatePollution()
 
     pollution_chart.series[0].setData(pollutionArray,true) ;
     pollutionTotal_chart.series[0].setData(pollutionTotalArray,true) ;
-}
-
-function switchChartPrice()
-{
-
-}
-
-function switchChartPoll(mod) {
-    /* if (mod = "total") {
-        pollution_chart.series[0].setData(pollutionTotalArray,true) ;
-    }
-    else {
-        pollution_chart.series[0].setData(pollutionArray,true) ;
-    }  */
 }

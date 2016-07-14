@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculateur </title>
-    <!-- Latest compiled and minified CSS -->
+    <title>Calculateur d’impact pour la transition énergétique en Suisse </title>
     <link rel="stylesheet" href="styles/third-party/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/myStyle.css">
     <script src="scripts/third-party/jquery.min.js"></script>
@@ -14,6 +13,7 @@
     <script type="text/javascript" src="documents/centrales_nucl.js"></script>
     <script type="text/javascript" src="documents/scenarii.js"></script>
     <script type="text/javascript" src="scripts/scriptCalcul.js"></script>
+    <script type="text/javascript" src="scripts/scriptCharts.js"></script>
     <script type="text/javascript" src="scripts/configScript.js"></script>
     <script type="text/javascript" src="scripts/scriptPrice.js"></script>
     <script type="text/javascript" src="scripts/scriptConso.js"></script>
@@ -30,6 +30,8 @@
         <p>Proposé et dirigé par : Arnaud Zufferey</p>
         <p>D'après une idée de : Philipe Jacquod</p>
         <p>Développé par : Guillaume Fallet</p>
+        <a class="btn btn-link" role="button" href="documentation.html">Aide et source des données</a>
+        <br>
         <select id="selectProdScen" class="form-control" style=" width: 400px; float: left">
             <option value ="none" selected disabled >Choisissez un scénario de production</option>
         </select>
@@ -234,6 +236,12 @@
             </tr>
         </table>
     </div>
+
+    <button id="idButtonExport" class="btn btn-default">Exporter les données </button>
+    <button id="idButtonCopy" style="display:none" class="btn btn-default">Copier les données dans le presse-papier </button>
+    <br>
+    <textarea style="display:none" rows="10" cols="200" id="idExportArea"></textarea>
+
     <img src="documents/images/logobottomHES.PNG" width="100%">
 </div>
 </body>
