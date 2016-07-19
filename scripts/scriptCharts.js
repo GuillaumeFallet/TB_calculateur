@@ -178,7 +178,7 @@ function Drawcharts() {
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
-                value: year-1960, // Value of where the line will appear
+                value: 0, // Value of where the line will appear
                 width: 3, // Width of the line
                 zIndex: 10
             }]
@@ -215,7 +215,7 @@ function Drawcharts() {
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
-                value: year-1960, // Value of where the line will appear
+                value: 0, // Value of where the line will appear
                 width: 3, // Width of the line
                 zIndex: 10
             }]
@@ -253,7 +253,7 @@ function Drawcharts() {
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
-                value: year-1960, // Value of where the line will appear
+                value: 0, // Value of where the line will appear
                 width: 3, // Width of the line
                 zIndex: 10
             }]
@@ -290,7 +290,7 @@ function Drawcharts() {
             text: 'Années',
             plotLines: [{
                 color: 'black', // Color value
-                value: year-1960, // Value of where the line will appear
+                value: 0, // Value of where the line will appear
                 width: 3, // Width of the line
                 zIndex: 10
             }]
